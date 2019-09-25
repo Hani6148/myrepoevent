@@ -14,11 +14,8 @@ router.get(
 
 router.get(
 	"/auth/google/redirect",
-	passport.authenticate("google", { failureRedirect: "/", successRedirect: '/signup' }),
-	function(req, res) {
-        console.log(req.user)
-		res.redirect
-	}
+	passport.authenticate("google", { failureRedirect: "/", successRedirect: '/signup' })
+
 );
 
 module.exports = router;
