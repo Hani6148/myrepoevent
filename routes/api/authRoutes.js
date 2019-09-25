@@ -17,7 +17,7 @@ router.get(
 	passport.authenticate("google", { failureRedirect: "/" }),
 	function(req, res) {
         console.log(req.user)
-		res.redirect("/signup")
+		res.redirect("https://projectevent6148.herokuapp.com/signup")
 	}
 );
 
