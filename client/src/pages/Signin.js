@@ -44,7 +44,7 @@ class Login extends React.Component {
                                 <div className="text-center social-btn">
                                     {/* <a href="#" className="btn btn-primary btn-block"><i className="fa fa-facebook"></i> Sign in with <b>Facebook</b></a> */}
                                     <a href="#" className="btn btn-info btn-block" ><i className="fa fa-Facebook"></i> login with <b>Facebook</b></a>
-                                    <a href="#" className="btn btn-danger btn-block" onClick={this.handleFormSubmit}><i className="fa fa-google" ></i> login with <b>Google</b></a>
+                                    <a href="/api/sign/googlesign" className="btn btn-danger btn-block"><i className="fa fa-google" ></i> login with <b>Google</b></a>
                                     {/* <a href="#" className="btn btn-danger btn-block"><i className="fa fa-google"></i> Sign in with <b>Google</b></a> */}
                                 </div>
 
