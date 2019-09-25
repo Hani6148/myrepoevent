@@ -14,10 +14,10 @@ router.get(
 
 router.get(
 	"/auth/google/redirect",
-	passport.authenticate("google", { failureRedirect: "/", session: false }),
+	passport.authenticate("google", { failureRedirect: "/", successRedirect: '/signup' }),
 	function(req, res) {
         console.log(req.user)
-		res.json(req.user)
+		res.redirect
 	}
 );
 
