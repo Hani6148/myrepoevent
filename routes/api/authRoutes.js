@@ -14,10 +14,10 @@ router.get(
 
 router.get(
 	"/auth/google/redirect",
-	passport.authenticate("google", { failureRedirect: "/" }),
+	passport.authenticate("google", { failureRedirect: "/", session: false }),
 	function(req, res) {
         console.log(req.user)
-		res.redirect("https://projectevent6148.herokuapp.com/signup")
+		res.json(req.user)
 	}
 );
 
