@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require('cors');
-
+const bodyParser=require("body-parser")
 
 const mongoose = require("mongoose");
 const routes = require("./routes");
@@ -10,17 +10,17 @@ var cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3001;
 var session = require("express-session");
 // Define middleware here
-app.use(cors({origin:"http://localhost:3001",
-credentials:true,
-allowHeaders:"*"
-}));
+app.use(cors());
+app.use(session({ secret: "cat", resave: true, saveUninitialized: true }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(passport.initialize());
+
 app.use(passport.session());
-app.use(session({ secret: "cat", resave: true, saveUninitialized: true }));
+
 
 
 // Serve up static assets (usually on heroku)

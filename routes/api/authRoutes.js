@@ -8,14 +8,16 @@ var passport = require("../../config/authenticate");
 router.get(
 	"/googlesign",
 	passport.authenticate("google", { scope: ["profile", "email"] })
-,function(req,res){
-    console.log(req.user)
-});
+);
 
 router.get(
 	"/auth/google/redirect",
-	passport.authenticate("google", { failureRedirect: "/", session: false ,successRedirect: '/signup'}),
+	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/feed'}),
 	
 );
 
+
+router.get("/check",function(req,res){
+	console.log(req.user)
+})
 module.exports = router;

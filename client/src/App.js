@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import Feed from "./pages/Feed";
 import Nav from "./components/Nav";
 import { Component } from "react"
 
@@ -17,6 +18,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Signin} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/feed" component={Feed} />
           <Route component={NoMatch} />
         </Switch>
       </div>

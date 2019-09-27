@@ -4,10 +4,10 @@ const keys = require('./keys');
 
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((user, done) => {
    
         done(null, user);
     
@@ -18,7 +18,7 @@ passport.use(
         // options for google strategy
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret,
-        callbackURL: "https://projectevent6148.herokuapp.com/api/sign/auth/google/redirect"
+        callbackURL: "/api/sign/auth/google/redirect"
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
         
