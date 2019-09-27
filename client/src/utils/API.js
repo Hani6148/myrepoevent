@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+  getSignin:function(){
+    return axios.get("/api/sign/googlesign");
+  },
   // Gets all books
   getBooks: function() {
     return axios.get("/api/books");
