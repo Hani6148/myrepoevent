@@ -12,7 +12,7 @@ router.get(
 
 router.get(
 	"/redirect",
-	passport.authenticate("facebook", { failureRedirect: "/" ,session: true,successRedirect: 'http://localhost:3000/feed'}),
+	passport.authenticate("facebook", { failureRedirect: "/" ,session: true,successRedirect: '/feed'}),
 	
 );
 
