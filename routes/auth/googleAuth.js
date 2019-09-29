@@ -6,18 +6,24 @@ var passport = require("../../config/authenticate");
 
 
 router.get(
-	"/googlesign",
+	"/",
 	passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 router.get(
-	"/auth/google/redirect",
-	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/feed'}),
+	"/redirect",
+	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: 'http://localhost:3000/feed'}),
 	
 );
 
 
 router.get("/check",function(req,res){
-	console.log(req.user)
+  if(req.user){
+	  
+   res.json(req.user)
+  }
+  else{
+	res.json({mouniam:"mahboul"})
+  }
 })
 module.exports = router;

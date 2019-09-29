@@ -1,0 +1,116 @@
+.Google{
+    width: 255px;
+    margin: auto;
+    background-color: rgb(228, 24, 24);
+    text-align: center;
+    margin-bottom: 20px;
+    height: 45px;
+    border-radius: 10px
+}
+
+.Facebook{
+    width: 255px;
+    margin: auto;
+    background-color:#131377;
+    text-align: center;
+    margin-bottom: 20px;
+    height: 45px;
+    border-radius: 10px
+}
+
+.wrap{
+    background-color: white;
+    width: 350px;
+    margin: auto;
+    height: 75%;
+    position: relative;
+    top: 80px;
+    border-radius: 30px
+}
+
+.Google a{
+    color: white;
+    position: relative;
+    top: 13px;
+    
+    
+}
+.Google a:hover{
+    color: white;
+    position: relative;
+    top: 13px;
+    text-decoration: none
+    
+}
+
+.Facebook a{
+    color: white;
+    position: relative;
+    top: 13px;
+    
+}
+.Facebook a:hover{
+   
+  
+    text-decoration: none;
+    
+}
+.Facebook:hover{
+    
+    text-decoration: none;
+    background-color: #2626e6
+    
+}
+.Google:hover{
+    
+    text-decoration: none;
+    background-color: #fa4242
+    
+}
+
+.input{
+    display: block;
+    margin:auto;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border-color: lightgray;
+    border-style: solid;
+    border-width: thin;
+}
+
+.inputWrap{
+
+    position: relative;
+    top:80px
+}
+
+.subButton{
+    width: 255px;
+    margin: auto;
+    background-color:#1759d3;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    height: 45px;
+    border-radius: 10px
+}
+
+.subButton a{
+    color: white;
+    position: relative;
+    top: 13px;
+    
+}
+.subButton a:hover{
+   
+  
+    text-decoration: none;
+    
+}
+.subButton:hover{
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #2626e6
+    
+}

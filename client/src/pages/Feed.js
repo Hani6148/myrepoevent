@@ -16,13 +16,11 @@ class Feed extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
-           <Sidnav/>
+          <Col size="md-6 sm-12">
+          
           </Col>
           <Col size="md-6 sm-12">
-          <Jumbotron>
-              <h1>event</h1>
-            </Jumbotron>
+          
             
           </Col>
         </Row>

@@ -1,0 +1,12 @@
+.img{
+    border-radius: 0;
+    width: inherit;
+    height: inherit;
+}
+
+.logo{
+    width: inherit;
+    height: 93%;
+    position: relative;
+    top:30px
+}

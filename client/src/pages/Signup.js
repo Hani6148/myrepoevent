@@ -1,58 +1,94 @@
-import React from "react"
+import { SignButton, SignWrap, InputWrap, Input, SubButton } from "../components/Signcard"
+import { Col, Row, Container } from "../components/Grid";
+import Logo from "../components/Logo";
+import React, { Component } from "react"
 import "./signup.css"
-class Signup extends React.Component {
+class Signup extends Component {
     state = {
+        userName: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        passwordValid: ""
+
 
     }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
     render() {
         return (
-<div className="container">
-    <div className="row">
-    <div className="col-sm-6"></div>
-    <div className="col-sm-6">
-            <div className="login-form">
-                <form action="/examples/actions/confirmation.php" method="post">
-                    <h2 className="text-center">Sign up</h2>
-                    <div className="text-center social-btn">
-                        <a href="#" className="btn btn-primary btn-block"><i className="fa fa-facebook"></i> Signup  with <b> <i class="fab fa-facebook-square"></i> Facebook</b></a>
-                        {/* <a href="#" className="btn btn-info btn-block"><i className="fa fa-twitter"></i> Sign in with <b>Twitter</b></a> */}
-                        <a href="#" className="btn btn-danger btn-block"><i className="fa fa-google"></i> Sign in with <b>Google</b></a>
-                    </div>
-                    <div className="or-seperator"><i>or</i></div>
-                    <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                            <input type="text" className="form-control" name="date-of-birth" placeholder="email" required="required" />
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-lock"></i></span>
-                            <input type="password" className="form-control" name="password" placeholder="Password" required="required" />
-                        </div>
-                    </div>
+            <Container fluid>
+                <Row>
+                    <Col size="md-6 sm-12 cont1">
+                        <Logo />
+                    </Col>
+                    <Col size="md-6 sm-12 cont2">
 
-                    <div className="form-group">
-                        <div className="input-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
-                            <input type="text" className="form-control" name="date-of-birth" placeholder="Date of birth" required="required" />
+                        <div className="graywrap">
+                            <SignWrap>
+                                <h1 style={{
+                                    width: 150,
+                                    margin: "auto",
+                                    position: "relative",
+                                    top: 35
+                                }}>Sign Up</h1>
+                                <InputWrap>
+                                    <Input
+
+                                        value={this.state.firstName}
+                                        onChange={this.handleInputChange}
+                                        name="firstName"
+                                        placeholder="First Name"
+                                    />
+                                    <Input
+                                        value={this.state.lastName}
+                                        onChange={this.handleInputChange}
+                                        name="lastName"
+                                        placeholder="Last Name" />
+                                    <Input
+                                        value={this.state.userName}
+                                        onChange={this.handleInputChange}
+                                        name="userName"
+                                        placeholder="Username" />
+                                    <Input
+                                        value={this.state.email}
+                                        onChange={this.handleInputChange}
+                                        name="email"
+                                        placeholder="Email" />
+
+                                    <Input
+                                        value={this.state.password}
+                                        onChange={this.handleInputChange}
+                                        name="password"
+                                        placeholder="Password"
+                                        type="password"
+                                    />
+
+                                    <Input
+                                        value={this.state.passwordValid}
+                                        onChange={this.handleInputChange}
+                                        name="passwordValid"
+                                        placeholder="Retype Password"
+                                        type="password"
+                                    />
+                                    <SubButton />
+                                </InputWrap>
+                            </SignWrap>
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-success btn-block login-btn">Sign up</button>
-                    </div>
-                    <div className="clearfix">
-                        <label className="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-                        <a href="#" className="pull-right text-success">Forgot Password?</a>
-                    </div>
 
-                </form>
-                <div className="hint-text small">Already have an account? <a href="/" className="text-success">login</a></div>
-            </div>
-            </div>
-            </div>
-            </div>
+
+
+                    </Col>
+                </Row>
+            </Container>
+
         )
     }
 }

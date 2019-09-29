@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Feed from "./pages/Feed";
 import Nav from "./components/Nav";
 import { Component } from "react"
+import Login from "./pages/Login";
 
 class App extends Component {
 
@@ -14,9 +15,9 @@ class App extends Component {
     return (
     <Router>
       <div>
-        <Nav />
+        
         <Switch>
-          <Route exact path="/" component={Signin} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/feed" component={Feed} />
           <Route component={NoMatch} />
