@@ -12,7 +12,7 @@ router.get(
 
 router.get(
 	"/redirect",
-	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/mainpage'}),
+	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: 'http://localhost:3000/mainpage'}),
 	
 );
 
