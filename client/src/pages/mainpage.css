@@ -1,0 +1,300 @@
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+
+
+
+
+/* main page css */
+/* ------------------------------------- */
+#mainpagediv{
+    background-color:  #e9ebee;
+    
+}
+
+#contentrow{
+    height: calc(100vh - 55.6px) ;
+}
+#profileChat{
+    box-sizing: border-box;
+    width: 25vw;
+    height: 100%;
+    padding: 0px;
+
+}
+#mainsection{
+    box-sizing: border-box;
+    width: 40vw;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+
+}
+#mainsectionCtrE{
+    box-sizing: border-box;
+    width: 40vw;
+    height:calc(100% - 20px) ;
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+}
+#events{
+    box-sizing: border-box;
+    width: 30vw;
+    height:calc(100% - 20px) ;
+    background-color: white;
+    padding: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+    
+    overflow: scroll;
+    
+}
+.sectiontitle{
+    color: gray;
+    font-size: 20px;
+    font-weight: 200;
+}
+/* ------------------------------------- */
+/* envents css */
+#eventscontainer{
+    padding-top: 10px;
+    overflow: hidden;
+}
+.eventcard{
+    height: 150px;
+    overflow: auto;
+    padding: 5px;
+    font-size: 10px;
+    background-color: #e9ebee;
+}
+
+/* ------------------------------------- */
+/* profile css */
+#profilediv{
+    width: 100%;
+    height: calc(50% - 20px);
+    background-color:white;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+   
+}
+#imageprofile{
+    height: 150px;
+    width:150px;
+}
+#rowprofileimg{
+    padding-top: 20px;
+}
+.profileinfo{
+    color: gray;
+}
+
+/* ------------------------------------- */
+/* chat css */
+
+#chatdiv{
+    background-color: white;
+    width: 100%;
+    height: calc(50% - 10px);
+    margin: 0px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+    
+
+}
+.chatbox{
+    padding: 10px;
+}
+#friendsbox{
+    background-color: #e9ebee;
+    height: 220px;
+    border: 1px solid #888;
+    border-bottom: none;
+    border-radius: 5px;
+    overflow: auto;
+}
+.friendimg{
+
+}
+.friendname{
+    font-size: 10px;
+    font-weight: 300;
+    text-align: center;
+}
+/* ------------------------------------- */
+/* post css */
+#postdiv{
+    background-color: white;
+    width: 100%;
+    height: calc(30% - 20px);
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+    padding-top: 10px;
+   
+}
+.posticons{
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.postbtns{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: grey;
+    border-color: gray;
+}
+.postbtns:hover{
+    background-color: grey;
+}
+/* ------------------------------------- */
+/* timeline css */
+#timelinediv{
+    background-color: white;
+    width: 100%;
+    height: calc(70% - 10px);
+    margin: 0px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+    padding-top: 10px;
+    overflow: auto;
+}
+#chatdiv{
+    padding-top: 10px;
+}
+.streamsection{
+    overflow-x: auto;
+     white-space: nowrap;
+     height: 130px;
+}
+#rowvideostream{
+    
+    overflow-x: auto;
+  white-space: nowrap;
+  height: 125px;
+  border: 1px solid #888;
+  border-bottom: none;
+  border-radius: 5px;
+  padding-top: 2px;
+  background-color: #e9ebee;
+}
+.videostr{
+    display: inline-block;
+    float: none;
+}
+.video{
+    height: 100px;
+    width: 120px;
+}
+#rowtimeline{
+    overflow: auto;
+}
+.timelineimg{
+    height: 175px;
+    width: 175px;
+    margin: 5px;
+}
+.postlinks{
+    background-color: inherit;
+}
+/* ------------------------------------- */
+/* navbar css */
+/* ------------------------------------- */
+.navbar{
+    background-color:   #111e8f;
+    color: white
+}
+.navbar-brand{
+    color: white;
+}
+#logo{
+    margin-right: 5px;
+}
+#searchButton,#logoutButton{
+    border-style: none;
+    background-color: inherit;
+    color: white;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 10px;
+}
+.searchicon{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+    #searchForm{
+        position: absolute;
+        right: 20px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    #searchForm{
+        width: 50%;
+    }
+  }
+  /* ------------------------------------- */
+  /* modal styling */
+  .modalimg{
+      max-height: 700px;
+      max-width: 500px;
+  }
+  .modalcontainer{
+      width: 60%;
+      margin: 0 auto;
+  }
+  .likes{
+      font-size: 30px;
+      font-weight: 300;
+  }
+  .likesic{
+      color: rgb(252, 21, 21);
+  }
+  .dislikesic{
+      color: rgb(64, 64, 240);
+  }
+  .likesicn{
+    color: rgb(252, 21, 21);
+    font-size: 20px;
+    margin-right: 5px;
+}
+.dislikesicn{
+    color: rgb(64, 64, 240);
+    font-size: 20px;
+}
+#cmtdiv{
+    min-height: 300px;
+}
+#comments{
+    min-height: 200px; 
+    border: solid 1px gray;
+    border-bottom: none;
+    border-radius: 5px;
+}
