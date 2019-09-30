@@ -12,14 +12,15 @@ router.get(
 
 router.get(
 	"/redirect",
-	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/mainpage'}),
-	
+	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/main'}),
 );
-
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 router.get("/check",function(req,res){
   if(req.user){
-	  
    res.json(req.user)
   }
   else{
