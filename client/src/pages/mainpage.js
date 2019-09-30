@@ -6,10 +6,13 @@ import Chat from "../subpages/chat";
 import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
-
+import Cookies from 'js-cookie'
 
 class MainPage extends Component {
 
+    componentDidMount(){
+        console.log(Cookies.get('access_token'))
+    }
     render() {
         return (
 
