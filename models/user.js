@@ -6,7 +6,7 @@ const bookSchema = new Schema({
   socialId: { type: Number},
   firstname: { type: String},
   lastname: { type: String},
-  email: { type: String,unique:true},
+  email: { type: String},
   password: { type: String},
   eventsHosted: [
       { type: Schema.Types.ObjectId, ref: 'Event' }
