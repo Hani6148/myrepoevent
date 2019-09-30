@@ -11,7 +11,7 @@ import Cookies from 'js-cookie'
 class MainPage extends Component {
 
     componentDidMount(){
-        console.log(Cookies.get('access_token'))
+        console.log(Cookies.get('connect.sid'))
     }
     render() {
         return (
