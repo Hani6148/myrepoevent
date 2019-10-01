@@ -3,7 +3,7 @@ import "./Logo.css"
 
 function Logo(props) {
   return (
-      <div className="logo"><img className="img" src={require('./event.JPG')}/></div>
+      <div className="logo"><img className="img" src={require('./moon.png')}/></div>
  
   );
 }

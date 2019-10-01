@@ -1,0 +1,49 @@
+.Banner{
+    height: 200px;
+    background-color: #d3d3d357;
+    width: 90%;
+    margin: auto;
+}
+
+.widget{
+    position: relative;
+    top: 35%;
+    width: 200px;
+    height: 70px;
+    margin: auto;
+}
+
+.cloudinary-button{
+    height: inherit;
+    background-color: green;
+    width: inherit;
+}
+.subButton{
+    width: 125px;
+    position: absolute;
+    background-color:green;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    height: 45px;
+    
+}
+
+.subButton a{
+    color: white;
+    position: relative;
+    top: 13px;
+    
+}
+.subButton a:hover{
+   
+    color: white;
+    text-decoration: none;
+    
+}
+.subButton:hover{
+    cursor: pointer;
+    text-decoration: none;
+    background-color: limegreen
+    
+}

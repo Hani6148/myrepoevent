@@ -3,7 +3,7 @@ import "./Signcard.css"
 
 export function SignButton(props) {
  return (
-     <div className={props.provider}> <a href={`/auth/${props.provider == "Facebook" ? "facebook" : "google"}/`}><i class={`fab fa-${props.provider == "Facebook" ? "facebook" : "google"}`}></i> &nbsp;  &nbsp;Log in with {props.provider}</a></div>
+     <div className={props.provider}> <a href={`/auth/${props.provider == "Facebook" ? "facebook" : "google"}/`}><i className={`fab fa-${props.provider == "Facebook" ? "facebook" : "google"}`}></i> &nbsp;  &nbsp;Log in with {props.provider}</a></div>
  
   )                                                                      
  

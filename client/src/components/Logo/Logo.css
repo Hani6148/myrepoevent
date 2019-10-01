@@ -6,7 +6,7 @@
 
 .logo{
     width: inherit;
-    height: 93%;
+    height: 100%;
     position: relative;
-    top:30px
+    padding-left: 0px
 }
