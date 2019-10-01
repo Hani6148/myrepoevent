@@ -19,6 +19,7 @@ class App extends Component {
         return true
       }
     })
+    console.log(check)
     return check;
   }
 
