@@ -8,7 +8,7 @@ import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
 
 
-class MainPage extends Component {
+class Main extends Component {
 
    
     render() {
@@ -46,4 +46,4 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage;
+export default Main;

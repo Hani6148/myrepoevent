@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect,withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import { Component } from "react"
@@ -11,26 +11,21 @@ class App extends Component {
   state = {
     autenticated: false
   }
-  componentDidUpdate() {
-     console.log("update")
-  }
   autenticate = () => {
     Axios.get("/auth/google/main").then(res => {
       if (!res) {
         this.setState({ autenticated: false })
-       
       }
       else {
         
         this.setState({ autenticated: true })
-        
+        return true
       }
     })
 
   }
 
   render() {
-    this.autenticate();
     return (
       <Router>
         <div>
@@ -38,8 +33,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/main" >
-              {this.state.autenticated ? <Main/> : <Redirect to="/" />}
+            <Route exact path="/main">
+              {this.autenticate() && this.state.autenticated ? <Main/> : <Redirect to="/" />}
             </Route>
             <Route component={NoMatch} />
           </Switch>
