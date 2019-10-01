@@ -15,9 +15,12 @@ class App extends Component {
     Axios.get("/auth/google/main").then(res => {
       if (!res) {
         this.setState({ autenticated: false })
+        return true
       }
       else {
+        
         this.setState({ autenticated: true })
+        return true
       }
     })
 
