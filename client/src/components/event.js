@@ -8,17 +8,17 @@ class Event extends Component {
             <div className="card mb-3 eventcard"  id="">
                 <div className="row no-gutters">
                     <div className="col-md-4">
-                        <img src="https://picsum.photos/200" className="card-img" alt="..." />
+                        <img src={this.props.event.img} className="card-img" alt="..." />
                             </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h5 className="card-title">Bootcamp graduation</h5>
+                                <h5 className="card-title">{this.props.event.name}</h5>
                                 <p className="card-text">
                                     Organizors : hani, susan ,abdel ,dawid , jenny, iji
                                     <br/>
                                     Participants : hani, susan ,abdel ,dawid , jenny, iji
                                     <br/>
-                                    Description : Lorem ipsum dolor sit amet, consectetur adipiscing elit. At ille pellit, qui permulcet sensum voluptate.
+                                    Description : {this.props.event.description}
                                 </p>
                                 <p className="card-text"><small className="text-muted">Created 3 mins ago</small></p>
                             </div>

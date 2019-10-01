@@ -6,17 +6,30 @@ import Chat from "../subpages/chat";
 import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
+import Create from "../subpages/Create"
 import Axios from "axios"
 
 class Main extends Component {
     state = {
-        user : {}
+        user : {},
+        allevents:[]
       }
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
             if (res) {
+                console.log("------------------------",res.data)
               this.setState({user : res.data})
+            }
+            else {
+              console.log("makanch")
+            }
+          })
+
+          Axios.get("/api/event/all").then(res => {
+            if (res) {
+                console.log("------------------------",res.data)
+              this.setState({allevents : res.data})
             }
             else {
               console.log("makanch")
@@ -39,7 +52,7 @@ class Main extends Component {
                         {this.props.link === "/main/createEvent"
                             ?
                             <div className="container" id="mainsectionCtrE">
-
+                            <Create/>
                             </div>
                             :
                             <div className="container" id="mainsection">
@@ -49,7 +62,7 @@ class Main extends Component {
                         }
 
                         <div className="container" id="events">
-                            <Events />
+                            <Events events={this.state.allevents} />
                         </div>
                     </div>
 
