@@ -9,7 +9,7 @@ import Axios from "axios"
 
 class App extends Component {
   autenticate=()=>{
-    Axios.get("/auth/google/main").then(res=>{
+  var check=  Axios.get("/auth/google/main").then(res=>{
       if(!res){
         console.log(res)
         return false
@@ -19,6 +19,7 @@ class App extends Component {
         return true
       }
     })
+    return check;
   }
 
   render() {
