@@ -4,11 +4,17 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
     "react": "^16.6.3",
+    "react-calendar": "^2.19.2",
+    "react-datepicker": "^2.9.6",
     "react-dom": "^16.6.3",
-    "react-scripts": "^2.1.1",
     "react-router-dom": "^4.3.1",
-    "axios": "^0.18.0"
+    "react-scripts": "^2.1.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.1"
   },
   "scripts": {
     "start": "react-scripts start",

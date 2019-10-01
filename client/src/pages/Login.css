@@ -6,7 +6,9 @@
 .col-cont1{
     height: 100vh;
     padding-right: 0px;
-    background-color: whitesmoke
+    background-color: whitesmoke;
+    padding-left: 0px
+
 }
 .col-cont2{
     height: 100vh;

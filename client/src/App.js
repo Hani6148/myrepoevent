@@ -7,6 +7,7 @@ import Feed from "./pages/Feed";
 import Nav from "./components/Nav";
 import { Component } from "react"
 import Login from "./pages/Login";
+import Create from "./pages/Create";
 
 class App extends Component {
 
@@ -19,7 +20,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/feed" component={Feed} />
+          <Route exact path="/feed" component={Create} />
           <Route component={NoMatch} />
         </Switch>
       </div>
