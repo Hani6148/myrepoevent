@@ -28,7 +28,7 @@ class Main extends Component {
    
     render() {
         if(!this.state.autenticated){
-            this.props.history.push("/")
+            console.log(this.props.history)
         }else{
         return (
 
