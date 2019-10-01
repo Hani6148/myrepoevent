@@ -6,18 +6,13 @@ import { Component } from "react"
 import Login from "./pages/Login";
 import Main from "./pages/mainpage"
 import Axios from "axios"
-import { resolve } from "dns";
 
 class App extends Component {
   autenticate=()=>{
    var check = Axios.get("/auth/google/main").then(res=>{
-      if(!res){
+      if(res){
         console.log(res)
-        resolve(false)
-      }
-      else{
-        console.log(res)
-        resolve(true) 
+        return true
       }
     })
     console.log(check)
