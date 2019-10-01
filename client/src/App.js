@@ -9,10 +9,17 @@ import Axios from "axios"
 
 class App extends Component {
   autenticate=()=>{
-   var check = Axios.get("/auth/google/main")
-  
-    console.log(check)
-    return check
+   var check = Axios.get("/auth/google/main").then(res=>{
+      if(!res){
+        console.log(res)
+        check(res)
+    
+    }})
+   var check = function (e) {
+     if (e){return true}else{return false}
+   }
+   console.log(check)
+   return check
   }
 
   render() {
@@ -24,7 +31,6 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/main" component={!this.autenticate() ? Login : Main} />
-          <Route exact path="/main/createEvent" component={()=><Main link="/main/createEvent"/>} />
           <Route component={NoMatch} />
         </Switch>
       </div>
