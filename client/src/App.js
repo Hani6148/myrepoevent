@@ -5,9 +5,19 @@ import Signup from "./pages/Signup";
 import { Component } from "react"
 import Login from "./pages/Login";
 import Main from "./pages/mainpage"
+import Axios from "axios"
 
 class App extends Component {
-
+  autenticate=()=>{
+    Axios.get("/auth/google/main").then(res=>{
+      if(res){
+        return Main
+      }
+      else{
+        return Login
+      }
+    })
+  }
 
   render() {
     return (
@@ -17,7 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/main" component={Main} />
+          <Route exact path="/main" component={this.autenticate()} />
           <Route component={NoMatch} />
         </Switch>
       </div>

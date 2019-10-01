@@ -14,6 +14,12 @@ router.get(
 	"/redirect",
 	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/main'}),
 );
+router.get("/main",function (req,res) {
+  if(req.user){
+    res.json(req.user)
+   }
+})
+
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
