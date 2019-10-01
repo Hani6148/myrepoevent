@@ -11,13 +11,8 @@ class App extends Component {
   state = {
     autenticated: false
   }
-  static propTypes = {
-    location: PropTypes.object.isRequired,
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      this.autenticate();
-    }
+  componentDidUpdate() {
+     console.log("update")
   }
   autenticate = () => {
     Axios.get("/auth/google/main").then(res => {
@@ -35,6 +30,7 @@ class App extends Component {
   }
 
   render() {
+    this.autenticate();
     return (
       <Router>
         <div>
