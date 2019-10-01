@@ -10,13 +10,13 @@ import Axios from "axios"
 
 class Main extends Component {
     state = {
-        autenticated: false
+        user : {}
       }
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
             if (res) {
-              console.log(res)
+              this.setState({user : res.data})
             }
             else {
               console.log("makanch")
