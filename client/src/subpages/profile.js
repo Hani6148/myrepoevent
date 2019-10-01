@@ -8,13 +8,13 @@ class Profile extends Component {
         return ( 
             <div className="container" id="profilediv">
                 <div className="row justify-content-md-center" id="rowprofileimg">
-                <img src="http://ae01.alicdn.com/kf/HTB1ZSuEXizxK1RkSnaVq6xn9VXaZ.jpg" alt="profileimg" className="img-thumbnail rounded-circle" id="imageprofile"/>
+                <img src={this.props.user.photo} alt="profileimg" className="img-thumbnail rounded-circle" id="imageprofile"/>
                 </div>
                 <div className="row justify-content-md-center" id="">
-                    <h1>The Mask</h1>
+                    <h1>{this.props.user.username}</h1>
                 </div>
                 <div className="row justify-content-md-center profileinfo" >
-                    <p><MdEvent/> Has organised <span>10</span> events</p>
+                    <p>@{this.props.user.email}</p>
                 </div>
                 <div className="row justify-content-md-center profileinfo">
                 <p>Rating <span><IoIosStar/><IoIosStar/><IoIosStar/><IoIosStarOutline/><IoIosStarOutline/></span></p>

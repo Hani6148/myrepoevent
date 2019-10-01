@@ -33,7 +33,7 @@ class Main extends Component {
                 <div className="container-fluid" id="contentdiv">
                     <div className="row" id="contentrow">
                         <div className="container" id="profileChat">
-                            <Profile />
+                            <Profile user={this.state.user} />
                             <Chat />
                         </div>
                         {this.props.link === "/main/createEvent"
