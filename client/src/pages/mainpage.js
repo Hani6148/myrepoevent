@@ -27,9 +27,7 @@ class Main extends Component {
       }
    
     render() {
-        if(!this.state.autenticated){
-            console.log(this.props.history)
-        }else{
+        
         return (
 
             <div id="mainpagediv">
@@ -62,7 +60,7 @@ class Main extends Component {
 
         )
     }
-    }
+    
 }
 
 export default Main;

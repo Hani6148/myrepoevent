@@ -34,6 +34,7 @@ class App extends Component {
             <Route exact path="/" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/main" component={Main}/>
+            <Route exact path="/main/createEvent" component={()=><MainPage link="/main/createEvent"/>} />
             <Route component={NoMatch} />
           </Switch>
         </div>
