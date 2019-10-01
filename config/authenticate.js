@@ -19,7 +19,7 @@ passport.use(
         // options for google strategy
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret,
-        callbackURL: "/auth/google/redirect"
+        callbackURL: "https://projectevent6148.herokuapp.com/auth/google/redirect"
     }, (accessToken, refreshToken, profile, done) => {
         console.log(profile)
         db.User.findOne({email: profile.emails[0].value}).then((currentUser) => {
@@ -48,7 +48,7 @@ passport.use(
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.clientID,
     clientSecret: keys.facebook.clientSecret,
-    callbackURL: "https://test-eventbook.herokuapp.com/auth/facebook/redirect"
+    callbackURL: "https://projectevent6148.herokuapp.com/auth/facebook/redirect"
   },(accessToken, refreshToken, profile, done) => {
     
     db.User.findOne({socialId: profile.id}).then((currentUser) => {
