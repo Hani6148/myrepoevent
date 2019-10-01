@@ -22,7 +22,6 @@ passport.use(
         callbackURL: "https://test-eventbook.herokuapp.com/auth/google/redirect"
     }, (accessToken, refreshToken, profile, done) => {
         db.User.findOne({email: profile.emails[0].value}).then((currentUser) => {
-            console.log(profile)
             if(currentUser){
                 // already have this user
                 console.log('user is: ', currentUser);

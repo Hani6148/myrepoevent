@@ -14,6 +14,7 @@ router.get(
 	"/redirect",
 	passport.authenticate("google", { failureRedirect: "/" ,session: true,successRedirect: '/main'}),
 );
+
 router.get("/main",function (req,res) {
   if(req.user){
     res.json(req.user)
@@ -25,12 +26,5 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-router.get("/check",function(req,res){
-  if(req.user){
-   res.json(req.user)
-  }
-  else{
-	res.json({mouniam:"mahboul"})
-  }
-})
+
 module.exports = router;
