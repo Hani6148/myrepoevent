@@ -30,9 +30,10 @@ passport.use(
             } else {
                 // if not, create user in our db
                 new db.User({
-                    email: profile.emails[0].value,
                     username: profile.displayName,
-
+                    socialId: profile.id,
+                    email : profile.emails[0].value,
+                    photo : profile.photos[0].value,
                     
                 }).save().then((newUser) => {
                     console.log('created new user: ', newUser);
@@ -60,8 +61,6 @@ passport.use(new FacebookStrategy({
             new db.User({
                 socialId: profile.id,
                 username: profile.displayName,
-                email : profile.emails[0].value,
-                photo : profile.photos[0].value,
                 
             }).save().then((newUser) => {
                 console.log('created new user: ', newUser);

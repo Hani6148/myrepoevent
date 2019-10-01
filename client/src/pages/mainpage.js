@@ -15,13 +15,11 @@ class Main extends Component {
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
-            if (!res) {
-              this.setState({ autenticated: false })
+            if (res) {
+              console.log(res)
             }
             else {
-              
-              this.setState({ autenticated: true })
-              return true
+              console.log("makanch")
             }
           })
       }
