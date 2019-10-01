@@ -30,7 +30,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/main" component={()=>{this.autenticate(); if(this.setState.autenticated){console.log(Main);return Main} else {console.log(Login);return Login}} }/>
+          <Route exact path="/main" component={ ()=>{this.autenticate();return this.setState.autenticated ? Main :  Login} }/>
           <Route component={NoMatch} />
         </Switch>
       </div>
