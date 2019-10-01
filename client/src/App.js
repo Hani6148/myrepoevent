@@ -9,19 +9,18 @@ import Axios from "axios"
 
 class App extends Component {
   autenticate=()=>{
-  var check;
-    Axios.get("/auth/google/main").then(res=>{
+  var check =()=>{Axios.get("/auth/google/main").then(res=>{
       if(!res){
         console.log(res)
-        check= false
+        return false
       }
       else{
         console.log(res)
-        check= true
+        return true
       }
-    }).then(res=>{return res})
-    console.log(check)
-    return check;
+    })}
+    console.log(check())
+    return check()
   }
 
   render() {
