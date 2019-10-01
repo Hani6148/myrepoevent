@@ -8,13 +8,16 @@ import Main from "./pages/mainpage"
 import Axios from "axios"
 
 class App extends Component {
+  state={
+    autenticated: false
+  }
   autenticate=()=>{
    Axios.get("/auth/google/main").then(res=>{
       if(!res){
-        this.autenticate = false;
+        this.setState({autenticated: false})
       }
       else{
-        this.autenticate = true;
+        this.setState({autenticated: true})
       }})
   
   }
@@ -27,7 +30,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/main" component={!this.autenticate() ? Login : Main} />
+          <Route exact path="/main" component={()=>{this.autenticate(); if(this.setState.autenticated){return Main}else {return Login}} }/>
           <Route component={NoMatch} />
         </Switch>
       </div>
