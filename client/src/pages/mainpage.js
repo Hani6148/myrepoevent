@@ -6,12 +6,30 @@ import Chat from "../subpages/chat";
 import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
-
+import Axios from "axios"
 
 class Main extends Component {
-
+    state = {
+        autenticated: false
+      }
+     
+      componentDidMount(){
+        Axios.get("/auth/google/main").then(res => {
+            if (!res) {
+              this.setState({ autenticated: false })
+            }
+            else {
+              
+              this.setState({ autenticated: true })
+              return true
+            }
+          })
+      }
    
     render() {
+        if(!this.state.autenticated){
+            this.props.history.push("/")
+        }else{
         return (
 
             <div id="mainpagediv">
@@ -43,6 +61,7 @@ class Main extends Component {
             </div>
 
         )
+    }
     }
 }
 
