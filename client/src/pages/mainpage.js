@@ -17,10 +17,7 @@ class Main extends Component {
      
       componentDidMount(){
         console.log(!this.state.user)
-        if (!this.state.user){
-            
-            this.setState({redirect : true})
-          }
+       
         Axios.get("/auth/google/main").then(res => {
           
             if (res) {
@@ -28,6 +25,10 @@ class Main extends Component {
             }
            
           })
+          if (!this.state.user){
+            
+            this.setState({redirect : true})
+          }
       }
      
    
