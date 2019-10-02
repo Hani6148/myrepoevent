@@ -17,6 +17,7 @@ class Main extends Component {
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
+            console.log(res)
             if (res) {
               this.setState({user : res.data})
             }
