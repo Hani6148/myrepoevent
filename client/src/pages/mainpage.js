@@ -7,10 +7,12 @@ import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
 import Axios from "axios"
+import {Redirect} from "react-router-dom"
 
 class Main extends Component {
     state = {
-        user : {}
+        user : {},
+        redirect: false
       }
      
       componentDidMount(){
@@ -19,16 +21,25 @@ class Main extends Component {
               this.setState({user : res.data})
             }
             else {
-              console.log("makanch")
+                console.log("nothing")
+                this.setState({
+                    redirect: true
+                  })
             }
           })
       }
    
+      renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/login' />
+        }
+      }
     render() {
         
         return (
 
             <div id="mainpagediv">
+                {this.renderRedirect()}
                 <Nav />
                 <div className="container-fluid" id="contentdiv">
                     <div className="row" id="contentrow">
