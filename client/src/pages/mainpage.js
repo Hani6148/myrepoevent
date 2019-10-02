@@ -7,7 +7,7 @@ import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
 import Axios from "axios"
-
+import CreateEv from "../subpages/Create"
 class Main extends Component {
     state = {
         user : {}
@@ -16,10 +16,11 @@ class Main extends Component {
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
             if (res) {
+                this.props.autenticate(true)
               this.setState({user : res.data})
             }
             else {
-              console.log("makanch")
+              this.props.autenticate(false)
             }
           })
       }
@@ -39,7 +40,7 @@ class Main extends Component {
                         {this.props.link === "/main/createEvent"
                             ?
                             <div className="container" id="mainsectionCtrE">
-
+                            <CreateEv/>
                             </div>
                             :
                             <div className="container" id="mainsection">

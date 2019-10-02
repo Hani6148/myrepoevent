@@ -3,6 +3,7 @@ const db = require("../models");
 
 module.exports = {
     findAll: function(req, res) {
+      console.log("hani")
       db.User
         .find(req.query)
         .then(dbModel => res.json(dbModel))

@@ -58,6 +58,7 @@
     margin-bottom: 10px;
     margin-top: 10px;
     box-shadow: 0 4px 8px 0 rgba(75, 74, 74, 0.2), 0 6px 20px 0 rgba(75, 74, 74, 0.19);
+    overflow: auto;
 }
 #events{
     box-sizing: border-box;

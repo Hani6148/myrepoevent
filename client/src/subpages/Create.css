@@ -1,0 +1,17 @@
+.eventInput{
+    margin-top: 40px;
+    width: 40%;
+    position: relative;
+    left: 56px;
+}
+
+.react-datepicker__input-container input{
+    height: 35px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: lightgray;
+}
+.banner{
+    background-size: cover;
+}

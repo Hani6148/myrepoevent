@@ -19,11 +19,7 @@ passport.use(
         // options for google strategy
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret,
-<<<<<<< HEAD
         callbackURL: "https://test-eventbook.herokuapp.com/auth/google/redirect"
-=======
-        callbackURL: "/auth/google/redirect"
->>>>>>> 8c58f43ee939ff6004e3e78384e010a6d2f54e78
     }, (accessToken, refreshToken, profile, done) => {
         console.log(profile)
         db.User.findOne({email: profile.emails[0].value}).then((currentUser) => {
