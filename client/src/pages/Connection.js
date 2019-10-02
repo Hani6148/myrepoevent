@@ -62,11 +62,15 @@ class Books extends Component {
 					<Col size="md-4">
 						<Jumbotron>
 							<h1>Let Us Help You Connect</h1>
-							<h4>
-								Are you in need of that special addition to your party or event? Or do you have talents
-								and services to make someone's day extra special? Please let fill out the form below so
-								we can all be sucessful!{' '}
-							</h4>
+							<br></br>
+							<h5>
+								Are you in need of that special addition to your party or event?
+								<br></br>
+							 	Do you offer event services
+								to make someone's day extra special?
+								<br></br>
+								Please complete form below to connect with EventBook users.{' '}
+							</h5>
 						</Jumbotron>
 						<form>
 							<Input
@@ -83,11 +87,11 @@ class Books extends Component {
 							/>
 							<label>
 								<input type="radio" name="serviceType" value="option1" onChange={this.handleInputChange} />
-								Professional Party/Event Specialists for Hire
+								Professional Party/Event Specialists
 							</label>
 							<label>
 								<input type="radio" name="serviceType" value="option2" onChange={this.handleInputChange} />
-								Seeking Event / Party Services"
+								Seeking Event / Party Services
 							</label>
 
 							<TextArea
@@ -106,7 +110,19 @@ class Books extends Component {
 					</Col>
 					<Col size="md-4 sm-6">
 						<Jumbotron>
-							<h1>Services Requested</h1>
+							<h1>Event Specialists</h1>
+							<br></br>
+							<h5>
+							Party Planners
+							<br></br>
+							Photographers
+							<br></br>
+							Catering
+							<br></br>
+							Magic/Balloons
+							<br></br>
+							Musicians/DJs
+							</h5>
 						</Jumbotron>
 
 						<List>
@@ -130,7 +146,7 @@ class Books extends Component {
 					</Col>
 					<Col size="md-4 sm-6">
 						<Jumbotron>
-							<h1>Services Renderred</h1>
+							<h1>In Search of Services</h1>
 						</Jumbotron>
 						{this.state.services.length ? (
 							<List>
@@ -147,7 +163,7 @@ class Books extends Component {
 													{service.description}
 												</strong>
 											</Link>
-											<DeleteBtn onClick={() => this.deleteBook(service._id)} />
+											<DeleteBtn onClick={() => this.deleteServices(service._id)} />
 										</ListItem>
 									))}
 							</List>
