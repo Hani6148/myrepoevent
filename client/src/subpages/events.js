@@ -9,10 +9,10 @@ class Events extends Component {
             
             <div className="container" id="eventscontainer">
                 <h3 className="sectiontitle">Events</h3>
-                <Event/>
-                <Event/>
-                <Event/>
-                <Event/>
+                {this.props.events.map(event=>(
+                     <Event event={event}/>
+                ))}
+                
               
             </div>
             
