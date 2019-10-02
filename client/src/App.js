@@ -36,6 +36,9 @@ class App extends Component {
             <Route exact path="/main" component={Main}/>
             <Route exact path="/main/createEvent" component={()=><Main link="/main/createEvent"/>} />
             <Route component={NoMatch} />
+            <Route exact path="/" component={Connection} />
+          <Route exact path="/connection/:id" component={Detail} />
+          <Route component={NoMatch} />
           </Switch>
         </div>
       </Router>
