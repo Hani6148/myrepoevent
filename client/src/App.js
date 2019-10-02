@@ -5,20 +5,13 @@ import Signup from "./pages/Signup";
 import { Component } from "react"
 import Login from "./pages/Login";
 import Main from "./pages/mainpage"
-
+import Axios from "axios"
 
 class App extends Component {
   state = {
     autenticated: false
   }
-  autenticate = (bool) => {
-   if(bool){
-      this.setState({autenticated : true})
-   }else{
-    this.setState({autenticated : false})
-   }
 
-  }
 
   render() {
     return (
@@ -28,8 +21,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/main" component={()=>!this.state.autenticated ?  <Login/> : <Main autenticate={this.autenticate} />}/>
-            <Route exact path="/main/createEvent" component={()=><Main link="/main/createEvent" autenticate={this.autenticate}/>} />
+            <Route exact path="/main" component={Main}/>
+            <Route exact path="/main/createEvent" component={()=><Main link="/main/createEvent"/>} />
             <Route component={NoMatch} />
           </Switch>
         </div>

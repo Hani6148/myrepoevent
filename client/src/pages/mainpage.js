@@ -8,28 +8,41 @@ import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
 import Axios from "axios"
 import CreateEv from "../subpages/Create"
+import { Redirect } from 'react-router-dom'
 class Main extends Component {
     state = {
-        user : {}
+        user : {},
+        redirect: false
       }
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
+            console.log(res)
             if (res) {
-                this.props.autenticate(true)
-              this.setState({user : res.data})
+                
+                this.setState({user : res.data})
+                
             }
             else {
-              this.props.autenticate(false)
+                console.log("nothing")
+                this.setState({
+                    redirect: true
+                  })
             }
           })
       }
    
+      renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/login' />
+        }
+      }
     render() {
         
         return (
 
             <div id="mainpagediv">
+                {this.renderRedirect()}
                 <Nav />
                 <div className="container-fluid" id="contentdiv">
                     <div className="row" id="contentrow">
