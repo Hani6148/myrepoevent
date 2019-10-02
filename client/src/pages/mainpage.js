@@ -12,23 +12,27 @@ import {Redirect} from "react-router-dom"
 class Main extends Component {
     state = {
         user : {},
-        redirect: true
+        redirect: false
       }
      
       componentDidMount(){
         Axios.get("/auth/google/main").then(res => {
-            console.log(res)
+          
             if (res) {
-              this.setState({user : res.data,
-                             redirect: false})
+              this.setState({user : res.data})
             }
            
           })
       }
+      componentDidUpdate(){
+          if (!this.state.user){
+            this.setState({redirect : true})
+          }
+      }
    
       renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/login' />
+          return <Redirect to='/' />
         }
       }
     render() {
