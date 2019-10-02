@@ -89,6 +89,7 @@ class Create extends Component {
                        invitationstatus:"pending"
                    })
                })
+               this.props.history.push('/main')
         }
                
            )

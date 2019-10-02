@@ -6,22 +6,32 @@ import Chat from "../subpages/chat";
 import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
+import Create from "../subpages/Create"
 import Axios from "axios"
-import CreateEv from "../subpages/Create"
-import { Redirect } from 'react-router-dom'
+import {Redirect} from "react-router-dom"
+
 class Main extends Component {
     state = {
         user : {},
-        redirect: false
+        allevents:[]
       }
      
       componentDidMount(){
+        console.log(!this.state.user)
+       
         Axios.get("/auth/google/main").then(res => {
-            console.log(res)
+          
             if (res) {
-                
-                this.setState({user : res.data})
-                
+                console.log("------------------------",res.data)
+              this.setState({user : res.data})
+            }
+           
+          })
+
+          Axios.get("/api/event/all").then(res => {
+            if (res) {
+                console.log("------------------------",res.data)
+              this.setState({allevents : res.data})
             }
             else {
                 console.log("nothing")
@@ -31,10 +41,11 @@ class Main extends Component {
             }
           })
       }
+     
    
       renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/login' />
+          return <Redirect to='/' />
         }
       }
     render() {
@@ -53,7 +64,7 @@ class Main extends Component {
                         {this.props.link === "/main/createEvent"
                             ?
                             <div className="container" id="mainsectionCtrE">
-                            <CreateEv/>
+                            <Create/>
                             </div>
                             :
                             <div className="container" id="mainsection">
@@ -63,7 +74,7 @@ class Main extends Component {
                         }
 
                         <div className="container" id="events">
-                            <Events />
+                            <Events events={this.state.allevents} />
                         </div>
                     </div>
 
