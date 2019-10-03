@@ -10,4 +10,7 @@ router.route("/")
   router.route("/:rid")
   .get(inviteController.findByrId)
 
+  router.route("/invitation/:id")
+  .get(inviteController.findById)
+
   module.exports = router;

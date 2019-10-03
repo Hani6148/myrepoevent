@@ -82,7 +82,9 @@ class Create extends Component {
                 img:this.state.image,
                 description:this.state.eventdesc,
                 type:this.state.eventtype,
-                host:this.state.eventhost
+                host:this.state.eventhost,
+                startDate:this.state.startdate,
+                endingDate:this.state.enddate
 
             }
            API.createEvent(eventData).then((data)=>{
@@ -91,6 +93,7 @@ class Create extends Component {
                    console.log("event name I NEED",data)
                    var invite={
                     event:data.data._id,
+                    sender:this.state.eventhost,
                     receiver:user,
                     invitationstatus:"pending"
                 }

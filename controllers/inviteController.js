@@ -10,7 +10,13 @@ module.exports = {
     },
     findByrId: function(req, res) {
       db.Invitation
-        .find({receiver:req.params.rid}).populate("event")
+        .find({receiver:req.params.rid,invitationstatus:"pending"}).populate("event")
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
+    findById: function(req, res) {
+      db.Invitation
+        .find({_id:req.params.id}).populate("event sender receiver")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
