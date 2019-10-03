@@ -1,47 +1,110 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect,Link } from "react-router-dom";
-import NoMatch from "./pages/NoMatch";
-import Signup from "./pages/Signup";
-import { Component } from "react"
-import Login from "./pages/Login";
-import Main from "./pages/mainpage"
-import Axios from "axios"
+import React from 'react'
+import Chatkit from '@pusher/chatkit'
+import MessageList from './components/Chat/MessageList'
+import SendMessageForm from './components/Chat/SendMessageForm'
+import RoomList from './components/Chat/RoomList'
+import NewRoomForm from './components/Chat/SendMessageForm'
 
-class App extends Component {
-  state = {
-    autenticated: false
-  }
-  autenticate = () => {
-    Axios.get("/auth/google/main").then(res => {
-      if (!res) {
-        this.setState({ autenticated: false })
-      }
-      else {
+
+import { tokenUrl, instanceLocator } from './config'
+
+class App extends React.Component {
+    
+    constructor() {
+        super()
+        this.state = {
+            roomId: null,
+            messages: [],
+            joinableRooms: [],
+            joinedRooms: []
+        }
+        this.sendMessage = this.sendMessage.bind(this)
+        this.subscribeToRoom = this.subscribeToRoom.bind(this)
+        this.getRooms = this.getRooms.bind(this)
+        this.createRoom = this.createRoom.bind(this)
+    } 
+    
+    componentDidMount() {
+        const chatManager = new Chatkit.ChatManager({
+            instanceLocator,
+            userId: 'dawiddudek',
+            tokenProvider: new Chatkit.TokenProvider({
+                url: tokenUrl
+            })
+        })
         
-        this.setState({ autenticated: true })
-        return true
-      }
-    })
-
-  }
-
-  render() {
-    return (
-      <Router>
-        <div>
-
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/main" component={Main}/>
-            <Route exact path="/main/createEvent" component={()=><Main link="/main/createEvent"/>} />
-            <Route component={NoMatch} />
-          </Switch>
-        </div>
-      </Router>
-    )
-      ;
-  }
+        chatManager.connect()
+        .then(currentUser => {
+            this.currentUser = currentUser
+            this.getRooms()
+        })
+        .catch(err => console.log('error on connecting: ', err))
+    }
+    
+    getRooms() {
+        this.currentUser.getJoinableRooms()
+        .then(joinableRooms => {
+            this.setState({
+                joinableRooms,
+                joinedRooms: this.currentUser.rooms
+            })
+        })
+        .catch(err => console.log('error on joinableRooms: ', err))
+    }
+    
+    subscribeToRoom(roomId) {
+        this.setState({ messages: [] })
+        this.currentUser.subscribeToRoom({
+            roomId: roomId,
+            hooks: {
+                onNewMessage: message => {
+                    this.setState({
+                        messages: [...this.state.messages, message]
+                    })
+                }
+            }
+        })
+        .then(room => {
+            this.setState({
+                roomId: room.id
+            })
+            this.getRooms()
+        })
+        .catch(err => console.log('error on subscribing to room: ', err))
+    }
+    
+    sendMessage(text) {
+        this.currentUser.sendMessage({
+            text,
+            roomId: this.state.roomId
+        })
+    }
+    
+    createRoom(name) {
+        this.currentUser.createRoom({
+            name
+        })
+        .then(room => this.subscribeToRoom(room.id))
+        .catch(err => console.log('error with createRoom: ', err))
+    }
+    
+    render() {
+        return (
+            <div className="app">
+                <RoomList
+                    subscribeToRoom={this.subscribeToRoom}
+                    rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+                    roomId={this.state.roomId} />
+                <MessageList 
+                    roomId={this.state.roomId}
+                    messages={this.state.messages} />
+                <SendMessageForm
+                    disabled={!this.state.roomId}
+                    sendMessage={this.sendMessage} />
+                <NewRoomForm createRoom={this.createRoom} />
+            </div>
+        );
+    }
 }
 
-export default App;
+export default App
