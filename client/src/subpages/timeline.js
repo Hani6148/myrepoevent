@@ -4,7 +4,8 @@ import Modal from "../components/modal"
 class Timeline extends Component {
     state={
         modal: "",
-        modalStyle: {}
+        modalStyle: {},
+        selectedEvent : ""
     }
 showModal=()=>{
     
@@ -21,11 +22,16 @@ hideModal=()=>{
          modalStyle : {}
     }})
 }
+componentDidMount(){
+    console.log(this.props.selectedEvent)
+}
+
 
     render() {
+     
         return ( 
             <div className="container" id="timelinediv">
-                <h3 className="sectiontitle">Streaming</h3>
+                <h3 className="sectiontitle">Videos</h3>
                 <div className="streamsection">
                     <div  id="rowvideostream">
                         <VideoStr/>
@@ -35,7 +41,7 @@ hideModal=()=>{
                         <VideoStr/>
                     </div>
                 </div>
-                <h3 className="sectiontitle">Timeline</h3>
+                <h3 className="sectiontitle">Images</h3>
                 <div className="timelinesection">
                     <div className="row"  id="rowtimeline">
                         <div className="col-4"

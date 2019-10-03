@@ -9,86 +9,84 @@ import Events from "../subpages/events"
 import Create from "../subpages/Create"
 import InvitationsSub from "../subpages/InvitationsSub"
 import Axios from "axios"
-import { Router, Route, Switch, Redirect,Link } from "react-router-dom";
+import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
+import Welcome from "../subpages/welcome"
 
 class Main extends Component {
-    state = {
-        user : {},
-        
+  state = {
+    user: {},
+    selectedEvent:""
+  }
+
+  componentDidMount() {
+    console.log(this.props.match)
+    Axios.get("/auth/google/main").then(res => {
+
+      if (res) {
+        console.log("my user------------------", res.data)
+        this.setState({ user: res.data })
       }
-     
-      componentDidMount(){
-        console.log(this.props.match)
-        Axios.get("/auth/google/main").then(res => {
-          
-            if (res) {
-                console.log("my user------------------",res.data)
-              this.setState({user : res.data})
-            }
-           
-          })
 
-<<<<<<< HEAD
-          Axios.get("/api/event/all").then(res => {
-            if (res) {
-                console.log("------------------------",res.data)
-              this.setState({allevents : res.data})
-            }
-            else {
-                console.log("nothing")
-                this.setState({
-                    redirect: true
-                  })
-            }
-          })
-=======
+    })
 
->>>>>>> hani
-      }
-     
-   
-      renderRedirect = () => {
-        if (this.state.redirect) {
-          return <Redirect to='/' />
-        }
-      }
-    render() {
-        
-        return (
-          
-        
-            <div id="mainpagediv">
-                <Nav current={this.state.user}/>
-                <div className="container-fluid" id="contentdiv">
-                    <div className="row" id="contentrow">
-                        <div className="container" id="profileChat">
-                            <Profile user={this.state.user} />
-                            <Chat />
-                        </div>
-                            
-                            <div className="container" id="mainsectionCtrE">
-                           
+  }
+  
+  
 
-                            <Route exact path="/main/createEvent" component={() => <Create currentUser={this.state.user} />}/>
-                            <Route exact path="/main" component={Post}/>
-                            <Route exact path="/main" component={Timeline}/>
-                            
-                            
-                            </div>
-                        
-
-                        <div className="container" id="events">
-                             <Route exact path="/main" component={Events}/>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            
-
-        )
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
     }
+  }
+
+  displayEvent = (id) => {
+    console.log(id)
+    this.setState({selectedEvent : id})
     
+  }
+ 
+
+  render() {
+
+    return (
+
+
+      <div id="mainpagediv">
+        <Nav current={this.state.user} />
+        <div className="container-fluid" id="contentdiv">
+          <div className="row" id="contentrow">
+            <div className="container" id="profileChat">
+              <Profile user={this.state.user} />
+              <Chat />
+            </div>
+
+            <div className="container" id="mainsection">
+
+              <Route exact path="/main" component={Welcome} />
+              <Route exact path="/main/createEvent" component={() => <Create currentUser={this.state.user} />} />
+              <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} />} />
+              <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} />} />
+
+
+            </div>
+
+
+            <div className="container" id="events">
+
+              <Route exact path="/main" component={() => <Events displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent}/>} />
+              <Route exact path="/main/createEvent" component={() => <Events displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent}/>} />
+              <Route exact path="/main/showEvent" component={() => <Events displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent}/>} />
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    )
+  }
+
 }
 
 export default Main;

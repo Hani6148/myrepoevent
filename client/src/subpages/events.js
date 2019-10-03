@@ -5,22 +5,9 @@ import Axios from "axios"
 class Events extends Component {
     
     state={
-        allevents:[]
+        allevents:[],
     }
 
-    componentWillUpdate(){
-
-        Axios.get("/api/event/all").then(res => {
-            if (res) {
-                console.log("------------------------",res.data)
-              this.setState({allevents : res.data})
-            }
-            else {
-              console.log("makanch")
-            }
-          })
-        
-        }
 
 
     componentDidMount(){
@@ -36,7 +23,9 @@ class Events extends Component {
       })
     
     }
-
+    
+   
+    
 
     render() {
         return ( 
@@ -44,7 +33,7 @@ class Events extends Component {
             <div className="container" id="eventscontainer">
                 <h3 className="sectiontitle">Events</h3>
                 {this.state.allevents.map(event=>(
-                     <Event event={event}/>
+                     <Event event={event} displayEvent={this.props.displayEvent} selectedEvent={this.props.selectedEvent}/>
                 ))}
                 
               

@@ -3,6 +3,12 @@ import { IoIosVideocam, IoMdImage } from "react-icons/io";
 import { MdEvent } from "react-icons/md";
 import { IoIosLink } from "react-icons/io";
 class Post extends Component {
+    setState={
+        selectedEvent: ""
+    }
+
+
+
 
     render() {
         return (

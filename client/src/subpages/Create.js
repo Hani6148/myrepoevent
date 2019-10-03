@@ -17,8 +17,8 @@ class Create extends Component {
         
         eventname: "",
         eventdesc: "",
-        startdate: new Date(),
-        enddate: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         image:"",
         eventtype:"",
         users:[],
@@ -52,8 +52,8 @@ class Create extends Component {
         });
     };
 
-    changeStartDate = date => this.setState({ startdate:date })
-    changeEndDate = date => this.setState({ enddate:date })
+    changeStartDate = date => this.setState({ startDate:date })
+    changeEndDate = date => this.setState({ endDate:date })
 
     checkUploadResult=(resultEvent) =>{
         if(resultEvent.event==="success"){
@@ -82,7 +82,9 @@ class Create extends Component {
                 img:this.state.image,
                 description:this.state.eventdesc,
                 type:this.state.eventtype,
-                host:this.state.eventhost
+                host:this.state.eventhost,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate
 
             }
            API.createEvent(eventData).then((data)=>{
@@ -104,6 +106,7 @@ class Create extends Component {
 
     render() {
         return (
+            <div className="container" id="mainsectionCtrE">
             <Container>
                 <Row>
 
@@ -159,14 +162,14 @@ class Create extends Component {
                              <Col size="md- sm-6">
                                  <h6>Start Date</h6>
                             <DatePicker
-                                selected={this.state.startdate}
+                                selected={this.state.startDate}
                                 onChange={this.changeStartDate}
                             />
                              </Col>
                              <Col size="md- sm-6">
                              <h6>End Date</h6>
                             <DatePicker
-                                selected={this.state.enddate}
+                                selected={this.state.endDate}
                                 onChange={this.changeEndDate}
                             />
                              </Col>
@@ -181,7 +184,7 @@ class Create extends Component {
                     </Col>
                 </Row>
             </Container>
-
+            </div>
         )
     }
 }
