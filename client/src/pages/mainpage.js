@@ -15,7 +15,7 @@ import { Router, Route, Switch, Redirect,Link } from "react-router-dom";
 class Main extends Component {
     state = {
         user : {},
-        imageAdded:""
+        dataAdded:""
       }
 
 
@@ -38,7 +38,7 @@ class Main extends Component {
       checkUploadResult=(resultEvent) =>{
         if(resultEvent.event==="success"){
             console.log(resultEvent.info.url)
-            this.setState({imageAdded:resultEvent.info.url})
+            this.setState({dataAdded:resultEvent.info.url})
             console.log(this.state.imageAdded)
         }
         
