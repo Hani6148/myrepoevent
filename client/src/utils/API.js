@@ -6,7 +6,7 @@ export default {
     return axios.get("/api/users/all");
   },
 
-  createEvent:function(eventData){
+  createEvent:eventData=>{
     return axios.post("/api/event/create",eventData);
   },
   InviteFriends:function(Invite){
