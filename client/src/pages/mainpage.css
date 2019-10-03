@@ -302,3 +302,9 @@
 #mainsectionCtrE{
     overflow: scroll
 }
+
+.ui.floating.dropdown>.menu {
+    margin-top: .5em!important;
+    border-radius: .28571429rem!important;
+    width: max-content;
+}

@@ -9,7 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import API from "../utils/API";
 import SubButton from "../components/CreateEvent/EventSub"
-
+import history from "../history"
 
 
 class Create extends Component {
@@ -22,7 +22,8 @@ class Create extends Component {
         image:"",
         eventtype:"",
         users:[],
-        userSelected:[]
+        userSelected:[],
+        eventhost:this.props.currentUser._id
 
       
 
@@ -30,9 +31,10 @@ class Create extends Component {
 
    
     componentDidMount() {
+        
         API.getUsers().then(res =>{
-            console.log(res.data)
-            var users=res.data.map(user=>{
+            console.log(this.props.currentUser)
+            var users=res.data.filter(user=>user.username!=this.props.currentUser.username).map(user=>{
                 return{
                     key:user._id,
                     text:user.username,
@@ -72,6 +74,7 @@ class Create extends Component {
         }
 
         CreateAndInvite=(event)=>{
+            history.push('/main')
             console.log("hani")
             event.preventDefault();
             var eventData={
@@ -79,17 +82,21 @@ class Create extends Component {
                 img:this.state.image,
                 description:this.state.eventdesc,
                 type:this.state.eventtype,
+                host:this.state.eventhost
 
             }
            API.createEvent(eventData).then((data)=>{
+               
                this.state.userSelected.map(user=>{
-                   return API.InviteFriends({
-                       event:data._id,
-                       receiver:user,
-                       invitationstatus:"pending"
-                   })
+                   console.log("event name I NEED",data)
+                   var invite={
+                    event:data.data._id,
+                    receiver:user,
+                    invitationstatus:"pending"
+                }
+                   return API.InviteFriends(invite)
                })
-               this.props.history.push('/main')
+              
         }
                
            )
@@ -142,7 +149,7 @@ class Create extends Component {
                                 search
                                 selection
                                 options={this.state.users}
-                                placeholder='Add Event Hosts'
+                                placeholder='Add people to Event'
                                 onChange={this.pickUser}
                             />
                              

@@ -8,9 +8,9 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-    findById: function(req, res) {
+    findByrId: function(req, res) {
       db.Invitation
-        .findById(req.params.id)
+        .find({receiver:req.params.rid}).populate("event")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
