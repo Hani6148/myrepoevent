@@ -17,15 +17,15 @@ class MessageList extends React.Component {
     }
     
     render() {
-        // if (!this.props.roomId) {
-        //     return (
-        //         <div className="message-list">
-        //             <div className="join-room">
-        //                 &larr; Join a room!
-        //             </div>
-        //         </div>
-        //     )
-        // }
+        if (!this.props.roomId) {
+            return (
+                <div className="message-list">
+                    <div className="join-room">
+                         Join a room! &rarr;
+                    </div>
+                </div>
+            )
+        }
         return (
             <div className="message-list">
                 {this.props.messages.map((message, index) => {
