@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import API from "../utils/API";
 import SubButton from "../components/CreateEvent/EventSub"
 import history from "../history"
+import Axios from "axios"
 
 
 class Create extends Component {
@@ -52,7 +53,8 @@ class Create extends Component {
         });
     };
 
-    changeStartDate = date => this.setState({ startDate:date })
+    changeStartDate = date =>{ this.setState({ startDate:date })
+                               console.log(date)                                }
     changeEndDate = date => this.setState({ endDate:date })
 
     checkUploadResult=(resultEvent) =>{
@@ -74,7 +76,8 @@ class Create extends Component {
         }
 
         CreateAndInvite=(event)=>{
-            history.push('/main')
+           
+          
             console.log("hani")
             event.preventDefault();
             var eventData={
@@ -83,11 +86,13 @@ class Create extends Component {
                 description:this.state.eventdesc,
                 type:this.state.eventtype,
                 host:this.state.eventhost,
-                startDate:this.state.startdate,
-                endingDate:this.state.enddate
+                startDate:this.state.startDate,
+                endingDate:this.state.endDate
 
             }
-           API.createEvent(eventData).then((data)=>{
+            if(this.state.eventtype=="private")  { API.createEvent(eventData).then((data)=>{
+            Axios.post("api/users/addhost",{eventId:data.data._id, userId:this.state.eventhost})
+            .then(history.push('/main'))
                
                this.state.userSelected.map(user=>{
                    console.log("event name I NEED",data)
@@ -103,6 +108,15 @@ class Create extends Component {
         }
                
            )
+    }
+
+        else{
+            API.createEvent(eventData).then((data)=>{
+                Axios.post("/api/users/addhost",{eventId:data.data._id, userId:this.state.eventhost})
+                .then(history.push("/main"))
+
+            })
+        }
         }
 
     render() {

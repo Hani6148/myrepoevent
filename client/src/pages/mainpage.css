@@ -318,3 +318,32 @@
     margin-bottom: 0;
     width: inherit
 }
+
+
+
+.ui.search.dropdown {
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    padding: 6px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.ui.search.dropdown.active>.text, .ui.search.dropdown.visible>.text {
+    pointer-events: none;
+    margin-right: 5px;
+}
+
+.ui.search.dropdown.active>input.search, .ui.search.dropdown.visible>input.search {
+    cursor: auto;
+    color: white;
+}
+
+.ui.search.dropdown>.text {
+    cursor: text;
+    position: relative;
+    left: 1px;
+    z-index: 3;
+    margin-right: 5px;
+}

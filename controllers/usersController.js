@@ -11,7 +11,7 @@ module.exports = {
     },
     findById: function(req, res) {
       db.User
-        .findById(req.params.id).populate("eventsParticipation eventsHosted" )
+        .findById(req.params.id).populate({path:"eventsParticipation",options: { sort: { "_id": -1 } },populate:{path:"participant"}} )
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
@@ -21,12 +21,23 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
-       
+       addhost:function(req,res){
+        db.User.findOneAndUpdate({_id:req.body.userId},{$push: { eventsParticipation: req.body.eventId}},{ new: true })
+        .then(dbModel=>db.Event.findOneAndUpdate({_id:req.body.eventId},{$push: { participant: req.body.userId}},{ new: true }))
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+       },
+     
+
+
+
     addEvent:function(req,res){
       db.Invitation
       .findOneAndUpdate({ _id: req.body.invitationId }, {invitationstatus:"accepted"})
-      .then(dbModel=> db.User.findOneAndUpdate({_id:req.body.userId},{$push: { eventsParticipation: req.body.eventId}},{ new: true }).then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err)))
+      .then(dbModel=> db.User.findOneAndUpdate({_id:req.body.userId},{$push: { eventsParticipation: req.body.eventId}},{ new: true }))
+      .then(dbModel=> db.Event.findOneAndUpdate({_id:req.body.eventId},{$push: { participant: req.body.userId}},{ new: true }))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
       
       
       },

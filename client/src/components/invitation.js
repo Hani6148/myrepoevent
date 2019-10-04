@@ -33,8 +33,8 @@ class Invitation extends Component {
 
     declineInvitation=event=>{
 
-
-
+    Axios.post("/api/invite/reject",{invitationId:this.state.invitation._id})
+    .then(res=>history.push("/main"))
     }
 
     render() {

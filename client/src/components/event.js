@@ -23,8 +23,8 @@ class Event extends Component {
             EventName : this.props.event.name,
             description : this.props.event.description,
             startDate : this.props.event.startDate,
-            endDate: this.props.event.endDate
-
+            endDate: this.props.event.endingDate,
+            participant:this.props.event.participant.map(participant=>{return participant.username}).toString()
         })
         if(this.props.event._id == this.props.selectedEvent)
         this.setState({selected : "eventClicked"})
@@ -68,7 +68,7 @@ class Event extends Component {
                                 <p className="card-text">
                                     Organizor : {this.state.host }.
                                     <br/>
-                                    Participants : 
+                                    Participants : {this.state.participant}
                                     <br/>
                                     Description : {this.state.description}
                                     <br/>

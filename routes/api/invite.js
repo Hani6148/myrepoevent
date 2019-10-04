@@ -13,4 +13,7 @@ router.route("/")
   router.route("/invitation/:id")
   .get(inviteController.findById)
 
+  router.route("/reject")
+  .post(inviteController.reject)
+
   module.exports = router;

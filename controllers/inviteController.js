@@ -38,6 +38,14 @@ module.exports = {
         .then(dbModel => dbModel.remove())
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
+    },
+
+    reject:function(req,res){
+      console.log("reject just sent")
+      db.Invitation
+      .findOneAndUpdate({ _id: req.body.invitationId }, {invitationstatus:"rejected"})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
     }
   };
   
