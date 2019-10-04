@@ -12,9 +12,12 @@ const bookSchema = new Schema({
   ],
   data: [
     { type: Schema.Types.ObjectId, ref: 'Data' }
+  
 ],
-  startDate : {type: Date},
-  endDate : {type: Date}
+startDate:{type:Date},
+endingDate:{type:Date}
+
+  
 });
 
 const Event = mongoose.model("Event", bookSchema);

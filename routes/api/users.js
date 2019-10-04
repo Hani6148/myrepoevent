@@ -10,5 +10,12 @@ router.route("/all").get(usersController.findAll)
 
 router.route("/user/:id").get(usersController.findById)
 
+  router.route("/events/:id")
+  .get(usersController.findById)
+
+
+  router.route("/addevent")
+  .post(usersController.addEvent)
+
 
   module.exports = router;

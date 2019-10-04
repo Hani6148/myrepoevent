@@ -8,14 +8,16 @@ class Events extends Component {
         allevents:[],
     }
 
+   
+    
 
 
     componentDidMount(){
 
-    Axios.get("/api/event/all").then(res => {
+    Axios.get("/api/users/events/"+this.props.currentUser._id).then(res => {
         if (res) {
-            console.log("------------------------",res.data)
-          this.setState({allevents : res.data})
+            console.log("------------------------",res.data.eventsParticipation)
+          this.setState({allevents : res.data.eventsParticipation})
         }
         else {
           console.log("makanch")

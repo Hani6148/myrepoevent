@@ -3,6 +3,7 @@ import { IoIosSearch, IoIosLogOut, IoIosNotifications } from "react-icons/io";
 import logo from "../images/logo.png"
 import { Dropdown } from 'semantic-ui-react'
 import Axios from "axios"
+import history from "../history"
 
 
 class Nav extends Component {
@@ -23,6 +24,10 @@ class Nav extends Component {
                         text:invite.event.name,
                         value:invite._id,
                         image: { avatar: true, src: invite.event.img},
+                        onClick:(event,data)=>{
+                          history.push("/main/invite/"+data.value) 
+
+                        }
                     }
                  
                 })

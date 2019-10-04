@@ -11,7 +11,7 @@ module.exports = {
     },
     findById: function(req, res) {
       db.User
-        .findById({ _id: req.params.id })
+        .findById(req.params.id).populate("eventsParticipation eventsHosted" )
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
@@ -21,9 +21,20 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
+       
+    addEvent:function(req,res){
+      db.Invitation
+      .findOneAndUpdate({ _id: req.body.invitationId }, {invitationstatus:"accepted"})
+      .then(dbModel=> db.User.findOneAndUpdate({_id:req.body.userId},{$push: { eventsParticipation: req.body.eventId}},{ new: true }).then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err)))
+      
+      
+      },
+
+
     update: function(req, res) {
       db.User
-        .findOneAndUpdate({ _id: req.params.id }, req.body)
+        .findOneAndUpdate({ _id: req.params.id }, )
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
