@@ -5,11 +5,16 @@ class Timeline extends Component {
     state={
         modal: "",
         modalStyle: {},
-        selectedEvent : ""
+        modalsrc :"",
+        selectedEvent : "",
+        data: []
     }
-showModal=()=>{
-    
+showModal=(e)=>{
+    e.preventDefault()
+    var {src} = e.target
+    console.log(src)
     this.setState(prev =>{return{
+        modalsrc : src,
          modal: "show" ,
          modalStyle : {display: "inline-block", backgroundColor: 'rgba(52, 52, 52, 0.8)'}
 }}
@@ -18,12 +23,14 @@ showModal=()=>{
 }
 hideModal=()=>{
     this.setState(prev =>{return{
+        modalsrc : "",
          modal: "" ,
          modalStyle : {}
     }})
 }
 componentDidMount(){
-    console.log(this.props.selectedEvent)
+    this.setState({data: this.props.data})
+
 }
 
 
@@ -34,35 +41,28 @@ componentDidMount(){
                 <h3 className="sectiontitle">Videos</h3>
                 <div className="streamsection">
                     <div  id="rowvideostream">
-                        <VideoStr/>
-                        <VideoStr/>
-                        <VideoStr/>
-                        <VideoStr/>
-                        <VideoStr/>
+                        
                     </div>
                 </div>
                 <h3 className="sectiontitle">Images</h3>
                 <div className="timelinesection">
                     <div className="row"  id="rowtimeline">
-                        <div className="col-4"
-                            onClick={(e)=>this.showModal()}>
-                            <img src="https://picsum.photos/200" alt="" className="timelineimg"></img>
-                        </div>
-                        <div className="col-4">
-                            <img src="https://picsum.photos/200" alt="" className="timelineimg"></img>
-                        </div>
-                        <div className="col-4">
-                            <img src="https://picsum.photos/200" alt="" className="timelineimg"></img>
-                        </div>
-                        <div className="col-4">
-                            <img src="https://picsum.photos/200" alt="" className="timelineimg"></img>
-                        </div>
-                        <div className="col-4">
-                            <img src="https://picsum.photos/200" alt="" className="timelineimg"></img>
-                        </div>
+
+                    {this.state.data.map(ele=>{
+                        if(ele.type == "image"){
+                            return(
+                                <div className="col-4"
+                                key={ele._id}
+                                onClick={(e)=>this.showModal(e)}>
+                                <img src={ele.link} alt="" className="timelineimg"></img>
+                                </div>
+                            )
+                        }
+                    })}
+                       
                     </div>
                 </div>
-                   <Modal show={this.state.modal} modalStyle={this.state.modalStyle} hide={this.hideModal}/> 
+                   <Modal show={this.state.modal} modalStyle={this.state.modalStyle} hide={this.hideModal} src={this.state.modalsrc}/> 
             </div>
         )
     }

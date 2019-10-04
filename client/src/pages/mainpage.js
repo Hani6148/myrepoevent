@@ -16,7 +16,7 @@ import Welcome from "../subpages/welcome"
 class Main extends Component {
   state = {
     user: {},
-    dataAdded:"",
+    data: [],
     selectedEvent:""
   }
 
@@ -24,6 +24,8 @@ class Main extends Component {
      
       componentDidMount(){
         console.log(this.props.match)
+       
+        
         Axios.get("/auth/google/main").then(res => {
             if (res) {
                 console.log("my user------------------",res.data)
@@ -37,11 +39,32 @@ class Main extends Component {
 
       checkUploadResult=(resultEvent) =>{
         if(resultEvent.event==="success"){
+            Axios.post("/api/timeline/saveData",{
+              type : "image",
+              link : resultEvent.info.url,
+              event : this.state.selectedEvent,
+              user : this.state.user._id,
+
+            }).then(res=>{
+              console.log(res.data);
+              this.getData(this.state.selectedEvent)
+            }
+             
+            )
             console.log(resultEvent.info.url)
-            this.setState({dataAdded:resultEvent.info.url})
-            console.log(this.state.imageAdded)
+            
+            
+            console.log(this.state.dataAdded)
         }
         
+        }
+        getData=(eventID)=>{
+          Axios.get("/api/timeline/getData/"+eventID).then(res=>{
+            console.log(res.data)
+            this.setState({data:res.data})
+          }
+            
+          )
         }
 
         renderRedirect = () => {
@@ -52,6 +75,7 @@ class Main extends Component {
       
         displayEvent = (id) => {
           console.log(id)
+          this.getData(id)
           this.setState({selectedEvent : id})
           
         }
@@ -70,7 +94,7 @@ class Main extends Component {
                             <Chat />
                         </div>
                             
-                            <div className="container" id="mainsectionCtrE">
+                            <div className="container" id="mainsection">
                            
                             <Switch>
                             <Route exact path="/main/createEvent" component={() => <Create currentUser={this.state.user} />}/>
@@ -79,15 +103,15 @@ class Main extends Component {
                             </Switch>
                             <Route exact path="/main" component={Welcome} />
                             <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadResult={this.checkUploadResult}/>} />
-                            <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} />} />
+                            <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} data={this.state.data}/>} />
                             </div>
                         
 
                         <div className="container" id="events">
                             
                              <Route path="/main" component={() => <Events currentUser={this.state.user} displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent} />}/>
-                              <Route exact path="/main/createEvent" component={() => <Events displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent}/>} />
-                             <Route exact path="/main/showEvent" component={() => <Events displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent}/>} />
+                
+                            
                              
                              
                         </div>

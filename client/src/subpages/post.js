@@ -32,24 +32,7 @@ class Post extends Component {
                     onClick={(e)=>{e.preventDefault(); window.location = "/main/createEvent"}}
                     ><MdEvent className="posticons" /></button>
                 </div>
-                <div className="row m-2">
-                    <div className="input-group">
-                        <div className="input-group-prepend">
-                            <span type="submit" className="input-group-text postlinks">Video <IoIosLink/></span>
-                        </div>
-                        <input type="text" aria-label="First name" className="form-control" placeholder="video link" />
-                        <input type="text" aria-label="Last name" className="form-control" placeholder="comments" />
-                    </div>
-                </div>
-                <div className="row m-2">
-                    <div className="input-group">
-                        <div className="input-group-prepend">
-                            <span type="submit" className="input-group-text postlinks">image <IoIosLink/></span>
-                        </div>
-                        <input type="text" aria-label="First name" className="form-control" placeholder="image link" />
-                        <input type="text" aria-label="Last name" className="form-control" placeholder="comments" />
-                    </div>
-                </div>
+              
             </div>
         )
     }
