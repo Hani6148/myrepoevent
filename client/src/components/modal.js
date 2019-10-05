@@ -3,7 +3,13 @@ import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { MdInsertComment,MdNavigateNext,MdNavigateBefore } from "react-icons/md";
 
 class Modal extends Component {
+    state={
+        user: {}
+    }
 
+    componentDidMount(){
+        this.setState({user : this.props.user})
+    }
     render() {
         return (
 
@@ -30,7 +36,14 @@ class Modal extends Component {
                                             <h3 className="sectiontitle">Comments</h3>
                                             <div className="commentsbox">
                                                 <div className="row" id="comments">
-
+                                                        <div className="col-3">
+                                                            <img src="https://picsum.photos/200" className="friendimg img-thumbnail rounded-circle" alt="..."/>
+                                                        </div>
+                                                        <div className="col-9 d-table">
+                                                        <div class="card card-body d-table-cell align-middle ">
+                                                            <p className="comment">this is the first comment</p>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="input-group mb-3">

@@ -123,8 +123,8 @@ class Main extends Component {
                             <Route exact path="/main/invite/:id" component={Invitation}/>
                             </Switch>
                             <Route exact path="/main" component={Welcome} />
-                            <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadimg={this.checkUploadimg} checkUploadvid={this.checkUploadvid}/>} />
-                            <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} data={this.state.data}/>} />
+                            <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadimg={this.checkUploadimg} checkUploadvid={this.checkUploadvid} user={this.state.user}/>} />
+                            <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} data={this.state.data} user={this.state.user}/>} />
                             </div>
                         
 

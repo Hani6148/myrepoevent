@@ -288,8 +288,9 @@
   /* ------------------------------------- */
   /* modal styling */
   .modalimg{
-      max-height: 700px;
-      max-width: 500px;
+      height: 300px;
+      width: inherit;
+      
   }
   .modalcontainer{
       width: 60%;
@@ -322,6 +323,10 @@
     border: solid 1px gray;
     border-bottom: none;
     border-radius: 5px;
+}
+.comment{
+    font-size: 15px;
+    color: black;
 }
 #mainsectionCtrE{
     overflow: scroll

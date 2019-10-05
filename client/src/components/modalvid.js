@@ -8,7 +8,13 @@ import "../../node_modules/video-react/dist/video-react.css";
 
 
 class ModalVid extends Component {
+    state={
+        user: {}
+    }
 
+    componentDidMount(){
+        this.setState({user : this.props.user})
+    }
 
     render() {
         return (
