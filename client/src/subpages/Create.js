@@ -24,7 +24,8 @@ class Create extends Component {
         eventtype:"",
         users:[],
         userSelected:[],
-        eventhost:this.props.currentUser._id
+        eventhost:this.props.currentUser._id,
+        selected:""
 
       
 
@@ -69,6 +70,12 @@ class Create extends Component {
         eventTypeChange=(value) =>{
          this.setState({eventtype:value})
          console.log(this.state.userSelected)
+         if (value==="public"){
+            this.setState({selected:"dontshow"})
+         }
+         else{
+            this.setState({selected:""})
+         }
          
         }
         pickUser=(event,data)=>{
@@ -159,7 +166,7 @@ class Create extends Component {
                             </RadioGroup>
                             <br />
                             <br />
-
+                            <div className={this.state.selected}>
                             <Dropdown
                                 clearable
                                 fluid
@@ -170,7 +177,7 @@ class Create extends Component {
                                 placeholder='Add people to Event'
                                 onChange={this.pickUser}
                             />
-                             
+                             </div>
                              <br/>
                              <br/>
                              <Row>
