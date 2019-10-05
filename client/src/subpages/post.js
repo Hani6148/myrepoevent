@@ -10,11 +10,21 @@ class Post extends Component {
 
 
 
-    showWidget=()=>{
+    showWidgetimg=()=>{
         console.log("hani")
        var myWidget = window.cloudinary.createUploadWidget({
         cloudName: 'drjmxewag', 
-        uploadPreset:'eventBook'}, (error, result) => {this.props.checkUploadResult(result)})
+        uploadPreset:'eventBook'}, (error, result) => {this.props.checkUploadimg(result)})
+     
+        myWidget.open()
+    
+    }    
+
+    showWidgetvid=()=>{
+        console.log("hani")
+       var myWidget = window.cloudinary.createUploadWidget({
+        cloudName: 'drjmxewag', 
+        uploadPreset:'eventBook'}, (error, result) => {this.props.checkUploadvid(result)})
      
         myWidget.open()
     
@@ -25,8 +35,8 @@ class Post extends Component {
             <div className="container" id="postdiv">
                 <h3 className="sectiontitle">Post</h3>
                 <div className="row justify-content-md-center">
-                    <button type="button" className="btn btn-outline-success postbtns"><IoIosVideocam className="posticons" /></button>
-                    <button type="button" className="btn btn-outline-success postbtns" onClick={this.showWidget}><IoMdImage className="posticons" /></button>
+                    <button type="button" className="btn btn-outline-success postbtns" onClick={this.showWidgetvid}><IoIosVideocam className="posticons" /></button>
+                    <button type="button" className="btn btn-outline-success postbtns" onClick={this.showWidgetimg}><IoMdImage className="posticons" /></button>
                     <button type="button" 
                     className="btn btn-outline-success postbtns"
                     onClick={(e)=>{e.preventDefault(); window.location = "/main/createEvent"}}

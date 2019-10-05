@@ -37,7 +37,7 @@ class Main extends Component {
           })
         }
 
-      checkUploadResult=(resultEvent) =>{
+      checkUploadimg=(resultEvent) =>{
         if(resultEvent.event==="success"){
             Axios.post("/api/timeline/saveData",{
               type : "image",
@@ -58,6 +58,27 @@ class Main extends Component {
         }
         
         }
+        checkUploadvid=(resultEvent) =>{
+          if(resultEvent.event==="success"){
+              Axios.post("/api/timeline/saveData",{
+                type : "video",
+                link : resultEvent.info.url,
+                event : this.state.selectedEvent,
+                user : this.state.user._id,
+  
+              }).then(res=>{
+                console.log(res.data);
+                this.getData(this.state.selectedEvent)
+              }
+               
+              )
+              console.log(resultEvent.info.url)
+              
+              
+              console.log(this.state.dataAdded)
+          }
+          
+          }
         getData=(eventID)=>{
           Axios.get("/api/timeline/getData/"+eventID).then(res=>{
             console.log(res.data)
@@ -102,7 +123,7 @@ class Main extends Component {
                             <Route exact path="/main/invite/:id" component={Invitation}/>
                             </Switch>
                             <Route exact path="/main" component={Welcome} />
-                            <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadResult={this.checkUploadResult}/>} />
+                            <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadimg={this.checkUploadimg} checkUploadvid={this.checkUploadvid}/>} />
                             <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} data={this.state.data}/>} />
                             </div>
                         

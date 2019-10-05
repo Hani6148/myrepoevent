@@ -6,17 +6,17 @@
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #5e6df7; 
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #4352d8; 
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #111e8f; 
   }
 
 
@@ -96,7 +96,20 @@
     
     color: #111e8f;
 }
-
+.card.card-body.d-table-cell.align-middle.evci{
+   
+    border: solid 1px grey;
+    padding-left: 0px;
+    padding-right: 0px;
+    background-color: inherit;
+}
+.card-body.eventbc{
+    
+    padding-top: 0px;
+}
+.cardrow{
+    padding-top: 10px;
+}
 /* ------------------------------------- */
 /* profile css */
 #profilediv{
@@ -204,27 +217,33 @@
     overflow-x: auto;
   white-space: nowrap;
   height: 125px;
-  border: 1px solid #888;
-  border-bottom: none;
+  border: 1px solid #111e8f;
   border-radius: 5px;
-  padding-top: 2px;
-  background-color: #e9ebee;
+  padding: 10px;
+  background-color: white;
 }
 .videostr{
     display: inline-block;
     float: none;
+    border: solid 1px #111e8f;
+   
 }
-.video{
-    height: 100px;
-    width: 120px;
-}
+
 #rowtimeline{
     overflow: auto;
 }
-.timelineimg{
+.colimg{
     height: 175px;
-    width: 175px;
-    margin: 5px;
+    
+}
+.timelineimg{
+    max-width: 100%;
+    height: auto;
+}
+.card.card-body.d-table-cell.align-middle.tm{
+    border: solid 1px #111e8f;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .postlinks{
     background-color: inherit;
@@ -307,6 +326,7 @@
 #mainsectionCtrE{
     overflow: scroll
 }
+
 
 .ui.floating.dropdown>.menu {
     margin-top: .5em!important;
