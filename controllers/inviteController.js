@@ -8,9 +8,15 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
+    findByrId: function(req, res) {
+      db.Invitation
+        .find({receiver:req.params.rid,invitationstatus:"pending"}).populate("event")
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
     findById: function(req, res) {
       db.Invitation
-        .findById(req.params.id)
+        .find({_id:req.params.id}).populate("event sender receiver")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
@@ -32,6 +38,14 @@ module.exports = {
         .then(dbModel => dbModel.remove())
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
+    },
+
+    reject:function(req,res){
+      console.log("reject just sent")
+      db.Invitation
+      .findOneAndUpdate({ _id: req.body.invitationId }, {invitationstatus:"rejected"})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
     }
   };
   

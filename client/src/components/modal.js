@@ -22,7 +22,7 @@ class Modal extends Component {
                             <div className="container" >
                                 <div className="row">
                                     <div className="col-7">
-                                        <img src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg" className="modalimg" />
+                                        <img src={this.props.src} className="modalimg" />
                                         <h1 className="likes"><FaHeart className="likesic" /><span className="likesicn">20</span><FaHeartBroken className="dislikesic" /><span className="dislikesicn">3</span></h1>
                                     </div>
                                     <div className="col-5">

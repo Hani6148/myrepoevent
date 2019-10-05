@@ -9,7 +9,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import API from "../utils/API";
 import SubButton from "../components/CreateEvent/EventSub"
-
+import history from "../history"
+import Axios from "axios"
 
 
 class Create extends Component {
@@ -17,12 +18,13 @@ class Create extends Component {
         
         eventname: "",
         eventdesc: "",
-        startdate: new Date(),
-        enddate: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         image:"",
         eventtype:"",
         users:[],
-        userSelected:[]
+        userSelected:[],
+        eventhost:this.props.currentUser._id
 
       
 
@@ -30,9 +32,10 @@ class Create extends Component {
 
    
     componentDidMount() {
+        
         API.getUsers().then(res =>{
-            console.log(res.data)
-            var users=res.data.map(user=>{
+            console.log(this.props.currentUser)
+            var users=res.data.filter(user=>user.username!=this.props.currentUser.username).map(user=>{
                 return{
                     key:user._id,
                     text:user.username,
@@ -50,8 +53,9 @@ class Create extends Component {
         });
     };
 
-    changeStartDate = date => this.setState({ startdate:date })
-    changeEndDate = date => this.setState({ enddate:date })
+    changeStartDate = date =>{ this.setState({ startDate:date })
+                               console.log(date)                                }
+    changeEndDate = date => this.setState({ endDate:date })
 
     checkUploadResult=(resultEvent) =>{
         if(resultEvent.event==="success"){
@@ -72,6 +76,8 @@ class Create extends Component {
         }
 
         CreateAndInvite=(event)=>{
+           
+          
             console.log("hani")
             event.preventDefault();
             var eventData={
@@ -79,24 +85,43 @@ class Create extends Component {
                 img:this.state.image,
                 description:this.state.eventdesc,
                 type:this.state.eventtype,
+                host:this.state.eventhost,
+                startDate:this.state.startDate,
+                endingDate:this.state.endDate
 
             }
-           API.createEvent(eventData).then((data)=>{
+            if(this.state.eventtype=="private")  { API.createEvent(eventData).then((data)=>{
+            Axios.post("api/users/addhost",{eventId:data.data._id, userId:this.state.eventhost})
+            .then(history.push('/main'))
+               
                this.state.userSelected.map(user=>{
-                   return API.InviteFriends({
-                       event:data._id,
-                       receiver:user,
-                       invitationstatus:"pending"
-                   })
+                   console.log("event name I NEED",data)
+                   var invite={
+                    event:data.data._id,
+                    sender:this.state.eventhost,
+                    receiver:user,
+                    invitationstatus:"pending"
+                }
+                   return API.InviteFriends(invite)
                })
-               this.props.history.push('/main')
+              
         }
                
            )
+    }
+
+        else{
+            API.createEvent(eventData).then((data)=>{
+                Axios.post("/api/users/addhost",{eventId:data.data._id, userId:this.state.eventhost})
+                .then(history.push("/main"))
+
+            })
+        }
         }
 
     render() {
         return (
+            <div className="container" id="mainsectionCtrE">
             <Container>
                 <Row>
 
@@ -142,7 +167,7 @@ class Create extends Component {
                                 search
                                 selection
                                 options={this.state.users}
-                                placeholder='Add Event Hosts'
+                                placeholder='Add people to Event'
                                 onChange={this.pickUser}
                             />
                              
@@ -152,14 +177,14 @@ class Create extends Component {
                              <Col size="md- sm-6">
                                  <h6>Start Date</h6>
                             <DatePicker
-                                selected={this.state.startdate}
+                                selected={this.state.startDate}
                                 onChange={this.changeStartDate}
                             />
                              </Col>
                              <Col size="md- sm-6">
                              <h6>End Date</h6>
                             <DatePicker
-                                selected={this.state.enddate}
+                                selected={this.state.endDate}
                                 onChange={this.changeEndDate}
                             />
                              </Col>
@@ -174,7 +199,7 @@ class Create extends Component {
                     </Col>
                 </Row>
             </Container>
-
+            </div>
         )
     }
 }

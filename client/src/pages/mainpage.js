@@ -7,71 +7,145 @@ import Post from "../subpages/post"
 import Timeline from "../subpages/timeline"
 import Events from "../subpages/events"
 import Create from "../subpages/Create"
+import InvitationsSub from "../subpages/InvitationsSub"
+import Invitation from "../components/invitation"
 import Axios from "axios"
+import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
+import Welcome from "../subpages/welcome"
 
 class Main extends Component {
-    state = {
-        user : {},
-        allevents:[]
-      }
+  state = {
+    user: {},
+    data: [],
+    selectedEvent:""
+  }
+
+
      
       componentDidMount(){
+        console.log(this.props.match)
+       
+        
         Axios.get("/auth/google/main").then(res => {
             if (res) {
-                console.log("------------------------",res.data)
+                console.log("my user------------------",res.data)
               this.setState({user : res.data})
             }
             else {
               console.log("makanch")
             }
           })
+        }
 
-          Axios.get("/api/event/all").then(res => {
-            if (res) {
-                console.log("------------------------",res.data)
-              this.setState({allevents : res.data})
+      checkUploadimg=(resultEvent) =>{
+        if(resultEvent.event==="success"){
+            Axios.post("/api/timeline/saveData",{
+              type : "image",
+              link : resultEvent.info.url,
+              event : this.state.selectedEvent,
+              user : this.state.user._id,
+
+            }).then(res=>{
+              console.log(res.data);
+              this.getData(this.state.selectedEvent)
             }
-            else {
-              console.log("makanch")
-            }
-          })
-      }
+             
+            )
+            console.log(resultEvent.info.url)
+            
+            
+            console.log(this.state.dataAdded)
+        }
+        
+        }
+        checkUploadvid=(resultEvent) =>{
+          if(resultEvent.event==="success"){
+              Axios.post("/api/timeline/saveData",{
+                type : "video",
+                link : resultEvent.info.url,
+                event : this.state.selectedEvent,
+                user : this.state.user._id,
+  
+              }).then(res=>{
+                console.log(res.data);
+                this.getData(this.state.selectedEvent)
+              }
+               
+              )
+              console.log(resultEvent.info.url)
+              
+              
+              console.log(this.state.dataAdded)
+          }
+          
+          }
+        getData=(eventID)=>{
+          Axios.get("/api/timeline/getData/"+eventID).then(res=>{
+            console.log(res.data)
+            this.setState({data:res.data})
+          }
+            
+          )
+        }
+
+        renderRedirect = () => {
+          if (this.state.redirect) {
+            return <Redirect to='/' />
+          }
+        }
+      
+        displayEvent = (id) => {
+          console.log(id)
+          this.getData(id)
+          this.setState({selectedEvent : id})
+          
+        }
    
     render() {
         
         return (
-
+          
+        
             <div id="mainpagediv">
-                <Nav />
+                <Route path="/main" component={() => <Nav current={this.state.user} />}/>
                 <div className="container-fluid" id="contentdiv">
                     <div className="row" id="contentrow">
                         <div className="container" id="profileChat">
                             <Profile user={this.state.user} />
                             <Chat />
                         </div>
-                        {this.props.link === "/main/createEvent"
-                            ?
-                            <div className="container" id="mainsectionCtrE">
-                            <Create/>
-                            </div>
-                            :
+                            
                             <div className="container" id="mainsection">
-                                <Post />
-                                <Timeline />
+                           
+                            <Switch>
+                            <Route exact path="/main/createEvent" component={() => <Create currentUser={this.state.user} />}/>
+                            
+                            <Route exact path="/main/invite/:id" component={Invitation}/>
+                            </Switch>
+                            <Route exact path="/main" component={Welcome} />
+                            <Route exact path="/main/showEvent" component={() => <Post selectedEvent={this.state.selectedEvent} checkUploadimg={this.checkUploadimg} checkUploadvid={this.checkUploadvid}/>} />
+                            <Route exact path="/main/showEvent" component={() => <Timeline selectedEvent={this.state.selectedEvent} data={this.state.data}/>} />
                             </div>
-                        }
+                        
 
                         <div className="container" id="events">
-                            <Events events={this.state.allevents} />
+                            
+                             <Route path="/main" component={() => <Events currentUser={this.state.user} displayEvent={this.displayEvent} selectedEvent={this.state.selectedEvent} />}/>
+                
+                            
+                             
+                             
                         </div>
                     </div>
 
                 </div>
             </div>
+            
 
-        )
-    }
-    
+    )
+
+  }
+  
 }
 
 export default Main;
