@@ -10,7 +10,7 @@ import history from "../history"
 class Nav extends Component {
 
     state = {
-
+        current:this.props.current,
         invites: [],
         events:[]
     }
@@ -36,22 +36,32 @@ class Nav extends Component {
                 this.setState({ invites: invites })
             })
 
-            Axios.get("/api/event/public/all").then(res => {
-               console.log(res)
-                var events = res.data.map(event => {
-                    return {
-                        key: event._id,
-                        text: event.name,
-                        value: event._id,
-                        image: {avatar: true, src: event.img },
-                        onClick: (event, data) => {
-                            history.push("/main/publi/" + data.value)
-
+            Axios.get("/api/event/public/all").then(all => {
+                Axios.get("/api/users/simple/"+this.props.current._id).then(res => {
+                    console.log(all)
+                    var currentUser=res.data
+                    console.log(currentUser.eventsParticipation)
+                    var events=all.data.filter( event=>currentUser.eventsParticipation.indexOf(event._id)<0).map(event=>{
+                        return {
+                            key: event._id,
+                            text: event.name,
+                            value: event._id,
+                            image: {avatar: true, src: event.img },
+                            onClick: (event, data) => {
+                                history.push("/main/public/" + data.value)
+    
+                            }
                         }
-                    }
+                    })
+                    this.setState({events:events})
+                    console.log(events)
 
                 })
-                this.setState({ events: events })
+
+              
+               
+              
+               
             })
 
         }, 1000);

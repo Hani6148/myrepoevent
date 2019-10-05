@@ -9,5 +9,7 @@ router.route("/create")
 
   router.route("/public/all")
   .get(eventController.findAll)
+  router.route("/public/:id")
+  .get(eventController.findById)
 
   module.exports = router;
