@@ -14,7 +14,9 @@ class Post extends Component {
         console.log("hani")
        var myWidget = window.cloudinary.createUploadWidget({
         cloudName: 'drjmxewag', 
+        
         uploadPreset:'eventBook'}, (error, result) => {this.props.checkUploadimg(result)})
+        
      
         myWidget.open()
     
@@ -24,6 +26,7 @@ class Post extends Component {
         console.log("hani")
        var myWidget = window.cloudinary.createUploadWidget({
         cloudName: 'drjmxewag', 
+        sources: [ 'local', 'url'],
         uploadPreset:'eventBook'}, (error, result) => {this.props.checkUploadvid(result)})
      
         myWidget.open()
