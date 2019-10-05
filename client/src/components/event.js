@@ -58,12 +58,15 @@ class Event extends Component {
             data-id={this.state.eventId} 
             key={this.state.eventId}
             onClick={(e)=>{this.selectEvent(e);}}>
-                <div className="row no-gutters">
-                    <div className="col-md-4">
-                        <img src={this.state.img} className="card-img" alt="..." />
+                <div className="row no-gutters cardrow">
+                    <div className="col-md-4 d-table">
+                            <div class="card card-body d-table-cell align-middle evci">
+                                <img src={this.state.img} className="card-img" alt="..." />
                             </div>
-                        <div className="col-md-8">
-                            <div className="card-body">
+                        
+                    </div>
+                        <div className="col-md-8 ">
+                            <div className="card-body eventbc">
                                 <h5 className="card-title">{this.state.EventName}</h5>
                                 <p className="card-text">
                                     Organizor : {this.state.host }.
