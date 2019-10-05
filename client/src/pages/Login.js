@@ -25,7 +25,7 @@ function Login() {
                 <SignButton provider="Google" />
               </div>
 
-              <p className="signup">Don't have a Facebook or Google account ? <a href="/signup"><b>Sign Up</b></a></p>
+              
             </SignWrap>
           </div>
         </Col>
