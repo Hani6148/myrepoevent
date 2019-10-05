@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IoIosSearch, IoIosLogOut, IoIosNotifications } from "react-icons/io";
+import {  IoIosLogOut } from "react-icons/io";
 import logo from "../images/logo.png"
 import { Dropdown } from 'semantic-ui-react'
 import Axios from "axios"
@@ -79,7 +79,7 @@ class Nav extends Component {
                             button
                             className='icon'
                         >
-                            <Dropdown.Menu>
+                        <Dropdown.Menu>
                                 <Dropdown.Header content='Invitations' />
                                 {this.state.invites.map((option) => (
                                     <Dropdown.Item key={option.value} {...option} />

@@ -7,26 +7,11 @@ class Chat extends Component {
     render() {
         return (
             <div className="container" id="chatdiv">
-                <h3 className="sectiontitle">Chat</h3>
+                <h3 className="sectiontitle">Adds</h3>
                 <div className="chatbox">
-                    <div className="row" id="friendsbox">
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                        <Friend/>
-                    </div>
-                    <div className="row">
-                        <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="message..." aria-label="message..." aria-describedby="button-addon2" />
-                                <div className="input-group-append" />
-                                <button className="btn btn-outline-secondary" type="button" id="button-addon2"><IoMdSend/></button>
-                                
-                        </div>
-                    </div>
+                   
+                   <img src="https://d24wuq6o951i2g.cloudfront.net/img/events/id/273/2737376/assets/3b5.Coding_vert-lockup-cmyk.jpg" alt="add" style={{width:"100%"}}></img>
+                   
                 </div>
             </div>
         )

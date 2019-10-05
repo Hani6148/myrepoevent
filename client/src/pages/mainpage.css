@@ -377,3 +377,30 @@
     z-index: 3;
     margin-right: 5px;
 }
+.ui.icon.button{
+    color:white;
+    background-color: #111e8f;
+    border: solid 1px white;
+}
+.ui.icon.button:hover{
+    color:#111e8f;
+    background-color: white;
+    border: solid 1px white;
+}
+.ui.search.dropdown{
+    border-radius: 3px;
+    font-weight: 300;
+}
+.cloudinary-button{
+    background-color: #111e8f;
+}
+.subButton{
+    background-color: #111e8f;
+    border-radius: 5px;
+}
+.ui.multiple.search.dropdown{
+    margin-left: 0px;
+}
+.item{
+    height: 50px;
+}

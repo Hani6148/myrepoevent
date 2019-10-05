@@ -35,8 +35,7 @@ class Modal extends Component {
                 <div className="modalcontainer modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon2"><MdNavigateBefore /></button>
-                            <button className="btn btn-outline-secondary" type="button" id="button-addon2"><MdNavigateNext /></button>
+                            
 
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.props.hide()}>
                                 <span aria-hidden="true">&times;</span>
@@ -45,9 +44,9 @@ class Modal extends Component {
                         <div className="modal-body">
                             <div className="container" >
                                 <div className="row">
-                                    <div className="col-7">
+                                    <div className="col-7" style={{paddingTop: "20px"}}>
                                         <img src={this.props.src} className="modalimg" />
-                                        <h1 className="likes"><FaHeart className="likesic" /><span className="likesicn">20</span><FaHeartBroken className="dislikesic" /><span className="dislikesicn">3</span></h1>
+                                        
                                     </div>
                                     <div className="col-5">
                                         <div className="container" id="cmtdiv">
@@ -92,8 +91,7 @@ class Modal extends Component {
                                                     id="button-addon2"
                                                     onClick={this.postComment}
                                                     ><MdInsertComment /></button>
-                                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2"><FaHeart /></button>
-                                                    <button className="btn btn-outline-secondary" type="button" id="button-addon2"><FaHeartBroken /></button>
+                                                   
                                                 </div>
                                             </div>
                                         </div>

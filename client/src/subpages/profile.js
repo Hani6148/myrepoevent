@@ -13,11 +13,10 @@ class Profile extends Component {
                 <div className="row justify-content-md-center" id="">
                     <h1>{this.props.user.username}</h1>
                 </div>
-                <div className="row justify-content-md-center profileinfo" >
+                <div className="row justify-content-md-center profileinfo" style={{paddingTop: "10px"}} >
                     <p>@{this.props.user.email}</p>
                 </div>
                 <div className="row justify-content-md-center profileinfo">
-                <p>Rating <span><IoIosStar/><IoIosStar/><IoIosStar/><IoIosStarOutline/><IoIosStarOutline/></span></p>
                 </div>
                 
             </div>
