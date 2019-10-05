@@ -318,14 +318,19 @@
 #cmtdiv{
     min-height: 300px;
 }
-#comments{
-    min-height: 200px; 
+#commentsrow{
+    height: 300px;
+    overflow: auto;
     border: solid 1px gray;
     border-bottom: none;
     border-radius: 5px;
 }
+#commentrow{
+    border: solid 1px gray;
+    border-radius: 5px;
+}
 .comment{
-    font-size: 15px;
+    font-size: 13px;
     color: black;
 }
 #mainsectionCtrE{
