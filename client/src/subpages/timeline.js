@@ -3,6 +3,9 @@ import Modal from "../components/modal";
 import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
 import ModalVid from "../components/modalvid"
+import Axios from "axios"
+
+
 class Timeline extends Component {
     state = {
         modal: "",
@@ -14,46 +17,49 @@ class Timeline extends Component {
         selectedEvent: "",
         data: [],
         idfile: "",
-        idfilevid: ""
+        idfilevid: "",
+        comments:[]
     }
 
     showModal = (e) => {
         e.preventDefault()
         var { src} = e.currentTarget
         var { id} = e.currentTarget
-        console.log(src)
-        this.setState(prev => {
-            return {
-                idfile: id,
-                modalsrc: src,
-                modal: "show",
-                modalStyle: { display: "inline-block", backgroundColor: 'rgba(52, 52, 52, 0.8)' }
-            }
-        }
-
-        )
+        Axios.get("/api/comment/getbyid/"+id).then(res=>{
+            this.setState(prev => {
+                return {
+                    comments : res.data,
+                    idfile: id,
+                    modalsrc: src,
+                    modal: "show",
+                    modalStyle: { display: "inline-block", backgroundColor: 'rgba(52, 52, 52, 0.8)' }
+                }
+            })
+        })
     }
     showModalvid = (e) => {
         e.preventDefault()
         var src = e.currentTarget.getAttribute("name")
         var id = e.currentTarget.getAttribute("id")
-        console.log(src)
-        this.setState(prev => {
-            return {
-                idfilevid: id,
-                modalsrcvid: src,
-                modalvid: "show",
-                modalStylevid: { display: "inline-block", backgroundColor: 'rgba(52, 52, 52, 0.8)' }
-            }
-        }
-
-        )
+        Axios.get("/api/comment/getbyid/"+id).then(res=>{
+            this.setState(prev => {
+                return {
+                    comments : res.data,
+                    idfilevid: id,
+                    modalsrcvid: src,
+                    modalvid: "show",
+                    modalStylevid: { display: "inline-block", backgroundColor: 'rgba(52, 52, 52, 0.8)' }
+                }
+            })
+        })
     }
     hideModalvid = () => {
         this.setState(prev => {
             return {
                 modalsrcvid: "",
                 modalvid: "",
+                idfilevid: "",
+                modalsrcvid: "",
                 modalStylevid: {}
             }
         })
@@ -71,7 +77,24 @@ class Timeline extends Component {
         this.setState({ data: this.props.data })
 
     }
-
+    getComments=()=>{
+        Axios.get("/api/comment/getbyid/"+this.state.idfilevid).then(res=>{
+            this.setState(prev => {
+                return {
+                    comments : res.data,
+                }
+                })
+            })
+    }
+    getCommentsimg=()=>{
+        Axios.get("/api/comment/getbyid/"+this.state.idfile).then(res=>{
+            this.setState(prev => {
+                return {
+                    comments : res.data,
+                }
+                })
+            })
+    }
 
     render() {
 
@@ -120,8 +143,8 @@ class Timeline extends Component {
 
                     </div>
                 </div>
-                <ModalVid showvid={this.state.modalvid} modalStylevid={this.state.modalStylevid} hidevid={this.hideModalvid} link={this.state.modalsrcvid} user={this.props.user} id={this.state.idfilevid}/>
-                <Modal show={this.state.modal} modalStyle={this.state.modalStyle} hide={this.hideModal} src={this.state.modalsrc} user={this.props.user} id={this.state.idfile}/>
+                <ModalVid showvid={this.state.modalvid} modalStylevid={this.state.modalStylevid} hidevid={this.hideModalvid} link={this.state.modalsrcvid} user={this.props.user} id={this.state.idfilevid} comments={this.state.comments} getComments={this.getComments}/>
+                <Modal show={this.state.modal} modalStyle={this.state.modalStyle} hide={this.hideModal} src={this.state.modalsrc} user={this.props.user} id={this.state.idfile} comments={this.state.comments} getComments={this.getCommentsimg}/>
             </div>
         )
     }

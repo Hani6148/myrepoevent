@@ -42,6 +42,7 @@ class Invitation extends Component {
 
       if(this.state.checkArray.length) {
         return (
+          <div className="container" id="mainsectionCtrE">
             <Card>
             <Card.Content>
               <Image
@@ -57,7 +58,7 @@ class Invitation extends Component {
               <br/>
               <br/>
               
-              <img src={this.state.invitation.event.img} width="575" height="300"/>
+              <img src={this.state.invitation.event.img} style={{ width: "100%", height: "auto",margin: "0 auto"}}/>
               <br/>
               <h3>Event Description</h3>
               <h5>Event Name: {`\u00A0 ${this.state.invitation.event.name}`}</h5>
@@ -79,13 +80,15 @@ class Invitation extends Component {
               </div>
             </Card.Content>
           </Card>
-            
+          </div> 
                 )
 
                
             }
           
-          else return ( <Card>
+          else return ( 
+          <div className="container" id="mainsectionCtrE">
+          <Card>
             <Card.Content>
               <Image
                 floated='right'
@@ -99,16 +102,12 @@ class Invitation extends Component {
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <div className='ui two buttons'>
-                <Button basic color='green' onClick={this.acceptInvitation}>
-                  Accpet
-                </Button>
-                <Button basic color='red' onClick={this.acceptInvitation}>
-                  Decline
-                </Button>
-              </div>
+              
             </Card.Content>
-          </Card>)}
+          </Card>
+          
+          </div>)}
+          
         }
         
         export default Invitation;

@@ -29,7 +29,7 @@ class Create extends Component {
       
 
     }
-
+  
    
     componentDidMount() {
         
@@ -127,10 +127,10 @@ class Create extends Component {
 
                     <Col size="md-12 sm-12 cont2">
 
-                        <h1 style={{
-                            position: "relative",
-                            left: 55,
-                            marginBottom: 34
+                        <h1 
+                            className="sectiontitle"
+                            style={{
+                            margin: 10
                         }}>Create An Event</h1>
 
                         <Banner image={this.state.image} checkUploadResult={this.checkUploadResult}/>

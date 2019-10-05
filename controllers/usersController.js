@@ -15,6 +15,14 @@ module.exports = {
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
+
+    findByIdNoPop:function(req, res) {
+      db.User
+        .findById(req.params.id) 
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    },
+
     create: function(req, res) {
       db.User
         .create(req.body)
@@ -41,6 +49,16 @@ module.exports = {
       
       
       },
+
+      addPublicEvent:function(req,res){
+        
+        db.User.findOneAndUpdate({_id:req.body.userId},{$push: { eventsParticipation: req.body.eventId}},{ new: true })
+        .then(dbModel=> db.Event.findOneAndUpdate({_id:req.body.eventId},{$push: { participant: req.body.userId}},{ new: true }))
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
+        
+        
+        },
 
 
     update: function(req, res) {

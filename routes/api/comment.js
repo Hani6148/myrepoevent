@@ -7,7 +7,7 @@ const commentController = require("../../controllers/commentsController");
 router.route("/create")
   .post(commentController.create)
 
-  router.route("/all")
-  .get(commentController.findAll)
+  router.route("/getbyid/:id")
+  .get(commentController.findById)
 
   module.exports = router;

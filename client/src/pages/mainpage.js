@@ -12,6 +12,7 @@ import Invitation from "../components/invitation"
 import Axios from "axios"
 import { Router, Route, Switch, Redirect, Link } from "react-router-dom";
 import Welcome from "../subpages/welcome"
+import Publicpage from "../components/eventPublic"
 
 class Main extends Component {
   state = {
@@ -118,8 +119,8 @@ class Main extends Component {
                             <div className="container" id="mainsection">
                            
                             <Switch>
-                            <Route exact path="/main/createEvent" component={() => <Create currentUser={this.state.user} />}/>
-                            
+                            <Route exact path="/main/createEvent" component={() => <Create  currentUser={this.state.user} />}/>
+                            <Route exact path="/main/public/:id" render={(props) => <Publicpage {...props} currentUser={this.state.user}/>}/>
                             <Route exact path="/main/invite/:id" component={Invitation}/>
                             </Switch>
                             <Route exact path="/main" component={Welcome} />

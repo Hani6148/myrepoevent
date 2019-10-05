@@ -10,7 +10,8 @@ module.exports = {
     },
     findById: function(req, res) {
       db.Comment
-        .findById(req.params.id)
+        .find({data: req.params.id})
+        .populate("user")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
