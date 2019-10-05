@@ -28,3 +28,9 @@
 .signup a{
     color: blue
 }
+.wrap{
+    border-radius: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2015ff;
+}

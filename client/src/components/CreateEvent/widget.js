@@ -20,7 +20,7 @@ render(){
 
 return(
     <div className="widget">
-    <button className="cloudinary-button" onClick={this.showWidget}>Banner</button>
+    <button className="cloudinary-button" onClick={this.showWidget} style={{backgroundColor: "#111e8f", borderRadius: "5px"}}>Banner</button>
     </div>
 )
 

@@ -48,7 +48,7 @@ passport.use(
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.clientID,
     clientSecret: keys.facebook.clientSecret,
-    callbackURL: "https://projectevent6148.herokuapp.com/auth/facebook/redirect"
+    callbackURL: "/auth/facebook/redirect"
   },(accessToken, refreshToken, profile, done) => {
     
     db.User.findOne({socialId: profile.id}).then((currentUser) => {
